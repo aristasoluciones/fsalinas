@@ -1,0 +1,5 @@
+[03-May-2017 12:29:45 America/Mexico_City] PHP Fatal error:  Call to a member function detalleCarrito() on null in /home/farmaciassalinas/public_html/ajax/producto.php on line 28
+[03-May-2017 12:30:06 America/Mexico_City] PHP Fatal error:  Call to a member function detalleCarrito() on null in /home/farmaciassalinas/public_html/ajax/producto.php on line 28
+[03-May-2017 12:30:40 America/Mexico_City] PHP Fatal error:  Call to undefined method Producto::detalleCarrito() in /home/farmaciassalinas/public_html/ajax/producto.php on line 28
+[04-May-2017 16:27:41 America/Mexico_City] PHP Fatal error:  Call to a member function setId() on null in /home/farmaciassalinas/public_html/ajax/account-create.php on line 23
+[04-May-2017 16:33:39 America/Mexico_City] PHP Fatal error:  Call to a member function setId() on null in /home/farmaciassalinas/public_html/ajax/account-create.php on line 23

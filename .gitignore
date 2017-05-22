@@ -1,0 +1,14 @@
+#excluir las carpetas templates_c
+/ajax/templates_c
+/templates_c
+
+#excluir los archivos de configuracion raiz para que funcione
+#todo local en los puestos de trabajo
+
+#config.php
+/images/productos_categorias/
+/webmaster/ajax/templates_c
+/webmaster/templates_c
+
+
+

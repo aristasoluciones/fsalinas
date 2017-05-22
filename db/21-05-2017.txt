@@ -1,0 +1,15 @@
+
+/* modificacion de la tabla categorias */
+
+ALTER TABLE `categoria` ADD COLUMN `status` ENUM('Baja','Activo') NOT NULL DEFAULT 'activo' AFTER `url`;
+
+
+/* modificacion de tabla categorias se agrega las columnas para guardar imagenes*/
+
+ALTER TABLE `categoria` 
+    ADD COLUMN `anchura` INT(11) NOT NULL ' AFTER `status`,
+	ADD COLUMN `altura` INT(11) NOT NULL  AFTER `anchura`,
+	ADD COLUMN `tipo` CHAR(15) NOT NULL  AFTER `altura`,
+	ADD COLUMN `imagen` LONGBLOB NOT NULL AFTER `tipo`;
+
+
