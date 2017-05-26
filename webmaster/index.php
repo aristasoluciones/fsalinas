@@ -17,10 +17,13 @@
 		'rol',
 		'config_role',
 		'perm_accion',
-		'cliente',
+		'usuario',
+		'cat_electronico',
+		'nota',
+		
 		
 		#catalogos
-		'usuario',
+		'cliente',
 		'estado',
 		'municipio',
 		'sucursal',

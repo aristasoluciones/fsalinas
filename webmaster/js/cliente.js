@@ -1,4 +1,4 @@
-var AJAX_PATH = WEB_ROOT+"/ajax/sucursal.php";
+var AJAX_PATH = WEB_ROOT+"/ajax/cliente.php";
 
 function AddReg(){
 	

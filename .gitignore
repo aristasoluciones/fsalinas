@@ -5,10 +5,13 @@
 #excluir los archivos de configuracion raiz para que funcione
 #todo local en los puestos de trabajo
 
-#config.php
+/config.php
 /images/productos_categorias/
 /webmaster/ajax/templates_c
 /webmaster/templates_c
+/docs/
+/docs/catalogo.pdf
+/images/blog/
 
 
 

@@ -8,6 +8,7 @@
 	$productos = $producto->EnumerateAll();
 	if(!empty($productos))
 		$smarty->assign('datatable_flag',true);
+	
 	$smarty->assign('registros',$productos);
 	
 ?>

@@ -48,6 +48,9 @@ $sucursal = new Sucursal;
 include_once(DOC_ROOT.'/classes/imagen.class.php');
 $imagen = new Imagen;
 
+include_once(DOC_ROOT.'/classes/cliente.class.php');
+$cliente = new Cliente;
+
 include_once(DOC_ROOT.'/classes/class.phpmailer.php');
 include_once(DOC_ROOT.'/classes/class.smtp.php');
 include_once(DOC_ROOT.'/classes/sendmail.class.php');

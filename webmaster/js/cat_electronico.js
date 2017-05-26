@@ -1,4 +1,4 @@
-var AJAX_PATH = WEB_ROOT+"/ajax/sucursal.php";
+var AJAX_PATH = WEB_ROOT+"/ajax/nota.php";
 
 function AddReg(){
 	
@@ -10,18 +10,22 @@ function AddReg(){
 			var splitResp = response.split("[#]");
 									
 			if(splitResp[0] == "ok")
-				$("#draggable").html(splitResp[1]);
+			{
+				$("#add_new_image").html(splitResp[1]);
+				$("#add_new_image").show();	
+			}
 			else
 				alert(msgFail);
 		},
 		error:function(){
 			alert(msgError);
 		}
-    });
-	
-	$("#draggable").modal("show");
-	
+    });	
 }//AddReg
+function hidenForm(){
+   $("#descripcion").val("");	 
+   $("#add_new_image").hide();	
+}
 function EditReg(id){
 	
 	$.ajax({
@@ -44,13 +48,16 @@ function EditReg(id){
 	
 	$("#draggable").modal("show");
 	
-}//AddReg
+}//EditReg
 function SaveReg(){	
-	  
+	 var ele  =document.getElementById('frmImg');
+     var frm = new FormData(ele);
 	$.ajax({
 	  	type: "POST",
-	  	url: AJAX_PATH,
-	  	data: $("#frmGral").serialize(true),
+	  	 url: AJAX_PATH,
+	  	 data: frm,
+  processData: false,  // tell jQuery not to process the data
+  contentType: false,
 		beforeSend: function(){			
 			$("#loader").html(LOADER);
 			$("#txtErrMsg").hide(0);
@@ -62,8 +69,8 @@ function SaveReg(){
 			$("#loader").html("");
 			
 			if(splitResp[0] == "ok"){
-				$("#draggable").modal("hide");
-				location.reload();
+				/*$("#draggable").modal("hide");*/
+				 location.reload();
 				
 			}else if(splitResp[0] == "fail"){
 				console.log(splitResp[0]);
@@ -80,43 +87,21 @@ function SaveReg(){
     });
 		
 }//SaveReg
-function RemoveReg(id){
-	
-	$.ajax({
-	  	type: "POST",
-	  	url: AJAX_PATH,
-	  	data: "type=remove&id="+id,		
-	  	success: function(response) {	
-		console.log(response)		
-			var splitResp = response.split("[#]");					
-			if(splitResp[0] == "ok")
-				location.reload();
-			else
-				alert(msgFail);
-		},
-		error:function(){
-			alert(msgError);
-		}
-    });	
-}//RemoveReg
-function ActiveReg(id){
-	
-	$.ajax({
-	  	type: "POST",
-	  	url: AJAX_PATH,
-	  	data: "type=activar&id="+id,		
-	  	success: function(response) {	
-		console.log(response)		
-			var splitResp = response.split("[#]");					
-			if(splitResp[0] == "ok")
-				location.reload();
-			else
-				alert(msgFail);
-		},
-		error:function(){
-			alert(msgError);
-		}
-    });	
-}//ActiveReg
 
-
+	
+function verForm(id)
+{
+  switch(id.value){
+ 		case 'empty':
+ 			  $("#row_detail").hide();
+ 		break;
+ 		case 'slider':
+ 		 	  $("#row_detail").hide();
+ 		break;
+       
+       case 'producto':
+ 		 	  $("#row_detail").show();
+ 		break;
+       
+   }
+ }

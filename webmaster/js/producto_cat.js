@@ -65,7 +65,7 @@ function SaveReg(){
 			$("#loader").html("");
 			
 			if(splitResp[0] == "ok"){
-				/*$("#draggable").modal("hide");*/
+				$("#draggable").modal("hide");
 				  location.reload();
 				
 			}else if(splitResp[0] == "fail"){

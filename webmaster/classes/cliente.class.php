@@ -41,23 +41,6 @@ class Cliente extends Main
 		$this->dependenciaId = $value;
 	}
 	
-	public function setEstabloId($value){
-		$this->Util()->ValidateInteger($value);
-		$this->establoId = $value;
-	}
-	
-	public function ValidarEstablo($value){
-	
-		if($this->tipo == "operacion"){
-		
-			if(empty($value)){
-				$this->Util()->setError(000000, "error","requiere establo");
-			}
-		
-		}
-	}
-	
-	
 	
 	public function setDireccion($value){	
 		if($this->Util()->ValidateRequireField($value, 'Direccion')){
@@ -70,6 +53,18 @@ class Cliente extends Main
 		if($this->Util()->ValidateRequireField($value, 'Calle')){
 			$this->Util()->ValidateString($value, 100, 0, '');
 			$this->calle = $value;
+		}		
+	}
+	public function setPaterno($value){	
+		if($this->Util()->ValidateRequireField($value, 'Apellido paterno')){
+			$this->Util()->ValidateString($value, 100, 0, '');
+			$this->apaterno = $value;
+		}		
+	}
+	public function setMaterno($value){	
+		if($this->Util()->ValidateRequireField($value, 'Apellido materno')){
+			$this->Util()->ValidateString($value, 100, 0, '');
+			$this->amaterno = $value;
 		}		
 	}
 	
@@ -156,20 +151,15 @@ class Cliente extends Main
 		
 	public function Info(){
 		
-		$sql = 'SELECT *, clienteId AS idReg FROM cliente WHERE clienteId = "'.$this->id.'"';
+		$sql = 'SELECT * FROM clientes WHERE clienteId = "'.$this->id.'"';
 		$this->Util()->DB()->setQuery($sql);
 		$info = $this->Util()->DB()->GetRow();
-				
-
-				
 		return $info;
 	}//Info
 	
-	public function EnumerateAll(){
+	public function Enumerate(){
 		
-		$sql = 'SELECT *, usuarioId AS idReg FROM usuario 
-				WHERE usuarioId > 1
-				ORDER BY nombre ASC';
+		$sql = 'SELECT * FROM clientes ORDER BY nombre ASC';
 		$this->Util()->DB()->setQuery($sql);
 		$registros = $this->Util()->DB()->GetResult();
 							
@@ -206,7 +196,7 @@ class Cliente extends Main
 		
 	}//EnumerateAll
 		
-	public function Enumerate(){
+	public function EnumerateAll(){
 		
 		$filtro ="";
 		
@@ -240,9 +230,6 @@ class Cliente extends Main
 	
 	public function Save(){
 						
-	
-					
-						
 		if($this->Util()->PrintErrors()){ 
 			return false; 
 		}
@@ -266,71 +253,6 @@ class Cliente extends Main
 		
 	}//Save
 	
-	public function EliminarUsuarioEstablo(){
-		
-		$sql = 'DELETE FROM usuario_establo WHERE usuarioId = "'.$this->id.'"';
-		$this->Util()->DB()->setQuery($sql);
-		$this->Util()->DB()->DeleteData();
-		return true;
-	}
-	
-	public function SaveEstablo(){
-
-		
-		
-		$sql = '
-			INSERT INTO usuario_establo (
-				usuarioId,
-				establoId
-			)
-			VALUES(
-				"'.$this->id.'" ,
-				"'.$this->establoId.'" 
-			)';
-		$this->Util()->DB()->setQuery($sql);
-		$this->Util()->DB()->InsertData();
-			
-		return true;
-		
-	}//Save
-	
-	public function EnumerateEstablo(){
-		
-		$sql = 'SELECT * FROM usuario_establo WHERE usuarioId = "'.$this->id.'"';
-		$this->Util()->DB()->setQuery($sql);
-		$registros = $this->Util()->DB()->GetResult();
-							
-		return $registros;
-		
-	}//EnumerateAll
-	
-	public function ListarEstablo(){
-		
-		$listEstablo = $this->EnumerateEstablo();
-	
-		if(!is_array($listEstablo)){ $listEstablo = array(); }
-		$array_dato = array();
-		foreach($listEstablo as $key => $row){
-			$array_dato[$key] = $row['establoId'];
-		}
-		
-		$establo = new Establo;
-		$enumerate = $establo->EnumerateAll();
-		if(!is_array($enumerate)){ $enumerate = array(); }
-		foreach($enumerate as $key => $row){
-			
-			if(in_array($row['establoId'], $array_dato)){
-				$enumerate[$key]['check'] = 1; 
-			}else{
-				$enumerate[$key]['check'] = 0;
-			}
-			
-			
-		}
-	
-		return $enumerate;
-		
-	}//Save
 	
 	public function Update(){
 						
@@ -338,54 +260,51 @@ class Cliente extends Main
 			return false; 
 		}
 		
-		$sql = 'UPDATE cliente SET 
-				nombre = "'.utf8_decode($this->nombre).'",
-				direccion = "'.utf8_decode($this->direccion).'"
+		$sql = 'UPDATE clientes SET 
+				nombre = "'.$this->nombre.'",
+				apaterno = "'.$this->apaterno.'",
+				amaterno = "'.$this->amaterno.'",
+				email = "'.$this->email.'"
 				WHERE clienteId = "'.$this->id.'"';
 		$this->Util()->DB()->setQuery($sql);
 		$this->Util()->DB()->UpdateData();
 			
-		$this->Util()->setError(10113, 'error', '');
+		$this->Util()->setError(6, 'complete', '');
 		$this->Util()->PrintErrors();
 		
 		return true;
 		
 	}//Update
 	
-	public function Delete(){
+	public function Delete(){		
 		
-		if($this->Util()->PrintErrors()){ 
-			return false; 
-		}
-		
-		
-		
-		$sql = 'UPDATE cliente SET 
-				statuseliminado = "si"
+		$sql = 'UPDATE clientes SET 
+				activo = "no"
 				WHERE clienteId = "'.$this->id.'"';
 		$this->Util()->DB()->setQuery($sql);
 		$this->Util()->DB()->UpdateData();
 			
-		$this->Util()->setError(10113, 'error', '');
+		$this->Util()->setError(4, 'complete', '');
 		$this->Util()->PrintErrors();
 		
 		return true;
 		
 	}//Delete
-						
-	
-	
-	
-	public function AllClientes(){
+	public function Activar(){		
 		
-		$sql = 'SELECT * FROM cliente WHERE 1';
+		$sql = 'UPDATE clientes SET 
+				activo = "si"
+				WHERE clienteId = "'.$this->id.'"';
 		$this->Util()->DB()->setQuery($sql);
-		$registros = $this->Util()->DB()->GetResult();
-							
-		return $registros;
+		$this->Util()->DB()->UpdateData();
+			
+		$this->Util()->setError(5, 'complete', '');
+		$this->Util()->PrintErrors();
 		
-	}//EnumerateAll
-						
+		return true;
+		
+	}//Delete
+	
 }
 
 ?>

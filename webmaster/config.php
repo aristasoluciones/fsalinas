@@ -7,7 +7,8 @@ switch($_SERVER['HTTP_HOST'])
 			$webRoot = 'http://'.$_SERVER['HTTP_HOST'].'/fsalinas/webmaster'; 
 			$docRoot = $_SERVER['DOCUMENT_ROOT'].'/fsalinas/webmaster';
 			$webRootImg = 'http://'.$_SERVER['HTTP_HOST'].'/fsalinas/images'; 
-			$docRootImg = $_SERVER['DOCUMENT_ROOT'].'/fsalinas/images';  
+			$docRootImg = $_SERVER['DOCUMENT_ROOT'].'/fsalinas/images';
+			$docRootImg1 = $_SERVER['DOCUMENT_ROOT'].'/fsalinas/';  
 			$sqlUser = 'root'; 
 			$sqlPw = ''; 
 			$sqlHost = 'localhost'; 
@@ -19,6 +20,7 @@ switch($_SERVER['HTTP_HOST'])
 			$docRoot = $_SERVER['DOCUMENT_ROOT'].'/webmaster';
 			$webRootImg = 'http://'.$_SERVER['HTTP_HOST'].'/images';  
 			$docRootImg = $_SERVER['DOCUMENT_ROOT'].'/images';
+			$docRootImg1 = $_SERVER['DOCUMENT_ROOT'].'/';
 			$rutaDocumento =  'http://'.$_SERVER['HTTP_HOST'].'/webmaster';
 			$rutaPortada =   'http://'.$_SERVER['HTTP_HOST'].'/webmaster';
 			$sqlUser = 'farmacia_fsalina'; 
@@ -32,6 +34,7 @@ switch($_SERVER['HTTP_HOST'])
 
 define('DOC_ROOT', $docRoot);
 define('DOC_ROOT_IMG', $docRootImg);
+define('DOC_ROOT_IMG1', $docRootImg1);
 define('WEB_ROOT_IMG', $webRootImg);
 define('WEB_ROOT', $webRoot);
 

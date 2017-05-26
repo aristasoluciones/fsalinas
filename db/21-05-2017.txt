@@ -12,4 +12,13 @@ ALTER TABLE `categoria`
 	ADD COLUMN `tipo` CHAR(15) NOT NULL  AFTER `altura`,
 	ADD COLUMN `imagen` LONGBLOB NOT NULL AFTER `tipo`;
 
+ALTER TABLE `productos_categorias`
+	ADD COLUMN `caracteristica` TEXT NULL AFTER `descripcion`;
+
+ALTER TABLE `sucursal`
+	CHANGE COLUMN `productos` `descripcion` TEXT NOT NULL AFTER `nombre`;
+
+ALTER TABLE `sucursal`
+	ADD COLUMN `status` ENUM('Activo','Baja') NOT NULL AFTER `horario`;
+
 

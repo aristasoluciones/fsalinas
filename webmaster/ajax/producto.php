@@ -68,9 +68,12 @@
 				if(is_uploaded_file($_FILES["imgCategoria"]["tmp_name"]))
 				{
                    /* comprobar si el archivo esta permitido y no exceda el limite maximo en kb*/
-				  if (in_array($_FILES['imgCategoria']['type'], ARCHIVOS_PERMITIDOS) && $_FILES['img']['size'] <= LIMITE_KB * 1024){
+				  if (in_array($_FILES['imgCategoria']['type'], $archivos_permitidos) && $_FILES['img']['size'] <= $limite_kb * 1024){
      	  	          # obtenermos la anchura y altura de la imagen
         			  $infoImg=getimagesize($_FILES["imgCategoria"]["tmp_name"]);
+        			  echo "<pre>";
+        			  print_r($infoImg);
+        			  exit;
                         //echo "<BR>".$info[0]; //anchura
 				        //echo "<BR>".$info[1]; //altura
 				        //echo "<BR>".$info[2]; //1-GIF, 2-JPG, 3-PNG
@@ -84,7 +87,7 @@
 				  	  $util->DB()->setDataString($data);
 				  	  $data_escape = $util->DB()->EscapeString();
 				  	  //guardamos en la base de datos toda la informacion
-                      $producto->setAchura($infoImg[0]);
+                      $producto->setAnchura($infoImg[0]);
                       $producto->setAltura($infoImg[1]);
                       $producto->setTipo($tipo);
                       $producto->setDataBloob($data_escape);
@@ -101,12 +104,13 @@
 				
 			break;
 		case 'update':
-
+				
 		        $producto->setId($_POST['id']);
 				$producto->setNombre($_POST['nombre']);
 				$producto->setDescripcion($_POST['descripcion']);
 				$producto->setAquien($_POST['aquien']);
 				$producto->setVentaja($_POST['ventaja']);
+				
 				//se comprueba si se subio alguna imagen
 				if(is_uploaded_file($_FILES["imgCategoria"]["tmp_name"]))
 				{ 
@@ -129,7 +133,7 @@
 				  	  $util->DB()->setDataString($data);
 				  	  $data_escape = $util->DB()->EscapeString();
 				  	  //guardamos en la base de datos toda la informacion
-                      $producto->setAchura($infoImg[0]);
+                      $producto->setAnchura($infoImg[0]);
                       $producto->setAltura($infoImg[1]);
                       $producto->setTipo($tipo);
                       $producto->setDataBloob($data_escape);
@@ -181,21 +185,34 @@
 				
 	    break;
 		case 'save_pcat':
+
                 $prefix ="img_pro_cat_".$_POST["categoria_id"];
 	            $urldestino=DOC_ROOT_IMG."/productos_categorias/";
 	            $urlwebroot=WEB_ROOT_IMG."/productos_categorias/";
 
+	            if(isset($_POST["promocion"]))
+					 $promocion = 'si';
+				   else
+				   	 $promocion = 'no';
 
 	            $producto->setId($_POST['categoria_id']);
 				$producto->setNombre($_POST['nombre']);
 				$producto->setDescripcion($_POST['descripcion']);
-				$producto->setFile($_FILES["img_pcat"]);
-				$producto->setUrl($urlwebroot);
-
+				$producto->setCaracteristica($_POST['caracteristica']);
+				$producto->setPrecioActual($_POST['pactual']);
+				$producto->setPrecioAnterior($_POST['panterior']);
+				$producto->setPromocion($promocion);
+				/*se comprueba si se subio alguna imagen*/
+				if(is_uploaded_file($_FILES["img_pcat"]["tmp_name"]))
+				{
+					$producto->setFile($_FILES["img_pcat"]);
+					$producto->setUrl($urlwebroot);
+					$producto->setNarchivo( $_FILES["img_pcat"]["tmp_name"]);
+				}
 				//obtener la ultima fila insertada en la tabla productos_categorias
 				$last_id = $producto->getLastIdPcat();
                 $concatname = $last_id+1;
-                $producto->setNarchivo( $_FILES["img_pcat"]["tmp_name"]);
+                
 
                 //se guarda producto para la categoria
 				$success = $producto->SavePcat();
@@ -204,7 +221,9 @@
                  $extension =  explode(".",$_FILES["img_pcat"]["name"]);
                  $ext = end($extension);
                  $targetPath =  $urldestino.$prefix.$concatname.".".$ext;
-	                 if(move_uploaded_file($archivo_temp,$targetPath))
+                  if(is_uploaded_file($_FILES["img_pcat"]["tmp_name"]))
+				  {
+                     if(move_uploaded_file($archivo_temp,$targetPath))
 	                 {
 	                   //actualizar extension del archivo y nombre
 	                   $producto->setId($concatname);
@@ -224,6 +243,10 @@
 	                 	$util->PrintErrors();			
 						$util->ShowErrors();
 	                 }
+	               }else
+	               {
+	               		echo 'ok[#]';	
+	               }
 				 
                    					
 				}else{
@@ -236,15 +259,32 @@
 	            $urldestino=DOC_ROOT_IMG."/productos_categorias/";
 	            $urlwebroot=WEB_ROOT_IMG."/productos_categorias/";
 
+	             if(isset($_POST["promocion"]))
+					 $promocion = 'si';
+				   else
+				   	 $promocion = 'no';
+
+				  if($_POST["panterior"]=="")
+				  	 $_POST["panterior"]= 0;
+
+
 	            $producto->setId($_POST['categoria_id']);
 				$producto->setNombre($_POST['nombre']);
 				$producto->setDescripcion($_POST['descripcion']);
-				$producto->setFile($_FILES["img_pcat"]);
-				$producto->setUrl($urlwebroot);
+				$producto->setCaracteristica($_POST['caracteristica']);
+				$producto->setPrecioActual($_POST['pactual']);
+				$producto->setPrecioAnterior($_POST['panterior']);
+				$producto->setPromocion($promocion);
+				//se comprueba si se subio alguna imagen
+				if(is_uploaded_file($_FILES["img_pcat"]["tmp_name"]))
+				{
+					$producto->setFile($_FILES["img_pcat"]);
+					$producto->setUrl($urlwebroot);
+					$producto->setNarchivo( $_FILES["img_pcat"]["tmp_name"]);
+				}
 
 				//obtener la ultima fila insertada en la tabla productos_categorias
 			    $concatname = $_POST['pcat_id'];
-                $producto->setNarchivo( $_FILES["img_pcat"]["tmp_name"]);
                 $producto->setPcatId($concatname);
                 //se Atualiza datos del producto para la categoria
 				$success = $producto->UpdatePcat();
@@ -253,6 +293,8 @@
                  $extension =  explode(".",$_FILES["img_pcat"]["name"]);
                  $ext = end($extension);
                  $targetPath =  $urldestino.$prefix.$concatname.".".$ext;
+                 if(is_uploaded_file($_FILES["img_pcat"]["tmp_name"]))
+                 {
 	                 if(move_uploaded_file($archivo_temp,$targetPath))
 	                 {
 	                   //actualizar extension del archivo y nombre del registro
@@ -273,7 +315,10 @@
 	                 	$util->PrintErrors();			
 						$util->ShowErrors();
 	                 }
-				 
+				  }else
+				  {
+				  	 echo 'ok[#]';	
+				  }
                    					
 				}else{
 					echo "fail[#]";					

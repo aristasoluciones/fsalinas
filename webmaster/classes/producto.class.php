@@ -5,6 +5,10 @@ class Producto extends Main
 	private $id;
 	private $nombre;
 	private $descripcion;
+	private $caracteristica;
+	private $panterior;
+	private $pactual;
+	private $promocion;
 	private $aquien;
 	private $ventaja;
 	private $url;
@@ -38,7 +42,29 @@ class Producto extends Main
 			$this->Util()->ValidateString($value, 100, 0, '');
 			$this->descripcion = $value;
 		}
-	}	
+	}
+	public function setPrecioActual($value){
+		if($this->Util()->ValidateRequireField($value, 'Precio actual')){
+			$this->Util()->ValidateNumeric($value, 'Precio actual');
+			$this->pactual = $value;
+		}
+	}
+	public function setPrecioAnterior($value){
+			$this->Util()->ValidateNumeric($value, 'Precio anterior');
+			$this->panterior = $value;
+		
+	}
+	public function setCaracteristica($value){
+		if($this->Util()->ValidateRequireField($value, 'Caracteristicas')){
+			$this->Util()->ValidateString($value, 100, 0, '');
+			$this->caracteristica = $value;
+		}
+	}
+	public function setPromocion($value){
+	
+			$this->promocion = $value;
+		
+	}
 	public function setAquien($value){
 		if($this->Util()->ValidateRequireField($value, ' A quien va dirigido')){
 			$this->Util()->ValidateString($value, 100, 0, '');
@@ -82,7 +108,7 @@ class Producto extends Main
 			$this->extension = $value;
 		/*}*/
 	}
-    public function setAchura($value){
+    public function setAnchura($value){
 		$this->anchura = $value;
 	}
 	 public function setAltura($value){
@@ -187,16 +213,25 @@ class Producto extends Main
 		if($this->Util()->PrintErrors()){ 
 			return false; 
 		}
+		if($this->anchura!="")
+            $add .=', anchura = "'.$this->anchura.'"';
+
+        if($this->altura!="")
+            $add .=', altura = "'.$this->altura.'"';
+        
+        if($this->tipo!="")
+            $add .=', tipo = "'.$this->tipo.'"';
+
+         if($this->dataBloob!="")
+            $add .=', imagen = "'.$this->dataBloob.'"';
+
 		$sql = 'UPDATE 
 				categoria SET 
 				nombre = "'.$this->nombre.'",			
 				descripcion = "'.$this->descripcion.'",
 				aquien = "'.$this->aquien.'",
-				ventajas = "'.$this->ventaja.'",
-				anchura = "'.$this->ventaja.'",
-				altura = "'.$this->ventaja.'",
-				tipo = "'.$this->tipo.'",
-				imagen = "'.$this->dataBloob.'"		
+				ventajas = "'.$this->ventaja.'"
+				'.$add.'	
 				WHERE categoriaId = "'.$this->id.'"';
 				
 		$this->Util()->DB()->setQuery($sql);
@@ -226,20 +261,28 @@ class Producto extends Main
 		INSERT INTO  productos_categorias (
 				`nombre`, 
 				`descripcion`,
+				`caracteristica`,
 				`categoria_id`,
 				`nombre_archivo`,
 				`extension`,
 				`url`,
-				`status`
+				`status`,
+				`promocion`,
+				`precioAnterior`,
+				`precioActual`
 				)
 				VALUES (
 				'".$this->nombre."',
 				'".$this->descripcion."',
+				'".$this->caracteristica."',
 				".$this->id.",
 				'".$this->nombre_archivo."',
 				'".$this->extension."',
 				'".$this->url."',
-				'Activo'
+				'Activo',
+				'".$this->promocion."',
+				".$this->panterior.",
+				".$this->pactual."
 				);
 		";
 		$this->Util()->DB()->setQuery($sql);
@@ -249,17 +292,34 @@ class Producto extends Main
 		$this->Util()->PrintErrors();
 		return true;	
 	}//Save
-	public function UpdatePcat(){		
+	public function UpdatePcat(){
+	  $add ="";		
 		if($this->Util()->PrintErrors()){ 
 			return false; 
 		}
+
+		if($this->nombre_archivo!="")
+            $add .=', nombre_archivo = "'.$this->nombre_archivo.'"';
+
+        if($this->extension!="")
+            $add .=', extension = "'.$this->extension.'"';
+        
+        if($this->url!="")
+            $add .=', url = "'.$this->url.'"';
+        
+
+
+
 		$sql = 'UPDATE 
 				productos_categorias SET 
 				nombre = "'.$this->nombre.'",			
 				descripcion = "'.$this->descripcion.'",
-				nombre_archivo = "'.$this->nombre_archivo.'",
-				extension = "'.$this->extension.'",
-				url = "'.$this->url.'"
+				caracteristica = "'.$this->caracteristica.'",
+				promocion = "'.$this->promocion.'",
+				precioAnterior = "'.$this->panterior.'",
+				precioActual = "'.$this->pactual.'",
+				status = "Activo"
+				'.$add.'
 				WHERE producto_categoria_id = "'.$this->pcat_id.'"';
 				
 		$this->Util()->DB()->setQuery($sql);

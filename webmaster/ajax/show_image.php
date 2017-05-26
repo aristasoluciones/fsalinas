@@ -1,6 +1,6 @@
 <?php
 
-  
+   include_once('../init.php');
 	include_once('../config.php');
 	include_once(DOC_ROOT.'/libraries.php');
 
@@ -11,7 +11,8 @@
 	$producto->setId($_GET["id"]);
 	$info = $producto->Info();
 
-	header("Content-type:".$info["tipo"]);
-    echo $info["imagen"];
+  /*  header("Content-Type:".$info["tipo"]);
+    echo base64_encode($info['imagen']);*/
+     echo '<img src="data:'.$info['tipo'].';base64,'.base64_encode($info["imagen"]).'"/>';
 
     ?>

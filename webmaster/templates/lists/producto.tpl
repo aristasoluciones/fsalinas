@@ -17,10 +17,12 @@
             <td>{$item.descripcion}</td>
             <td>{$item.aquien}</td>
 			<td>{$item.ventajas}</td>
-            <td><img src= />
-            <a href="{$WEB_ROOT}/ajax/show_image.php?id={$item.categoriaId}"  title="Ver Imagen">
+            <td>
+            <a href="{$WEB_ROOT}/ajax/show_image.php?id={$item.categoriaId}"  target="_blank" title="Ver Imagen">
                     Ver imagen
-                </a></td>
+                </a>
+              
+             </td>
             <td><div align="center">
                 {if in_array('edit_categoria',$privilegios) or $Usr.role_id eq 1}
 				<a href="javascript:void(0)" onClick="EditReg({$item.categoriaId})" title="Editar categoria">

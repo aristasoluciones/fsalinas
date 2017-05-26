@@ -38,8 +38,49 @@
 					{/if}
 					</div>
 				 </div>
+				<div class="form-group">
+				 <label class="control-label col-md-3"><span class="reqIcon"> * </span> Caracteristicas</label>
+					<div class="col-md-9">
+					 {if !$info}
+						<textarea  name="caracteristica" class="form-control"></textarea>
+					{else}
+						<textarea  name="caracteristica" class="form-control" >{$info.caracteristica}</textarea>
+					{/if}
+					</div>
+				 </div>
 				 <div class="form-group">
-				 <label class="control-label col-md-3"><span class="reqIcon"> * </span> Imagen del producto </label>
+					<label class="control-label col-md-3"><span class="reqIcon"></span>Precio Anterior</label>
+					<div class="col-md-9">
+						{if !$info}
+							<input type="text" class="form-control input-small" name="panterior" value=""  />
+						{else}
+							<input type="text" class="form-control input-small" name="panterior" value="{$info.precioAnterior}"  />
+						{/if}
+					</div>
+							
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3"><span class="reqIcon"> * </span>Precio Actual</label>
+					<div class="col-md-9">
+						{if !$info}
+							<input type="text" class="form-control input-small" name="pactual" value="" />
+						{else}
+							<input type="text" class="form-control input-small" name="pactual" value="{$info.precioActual}"  />
+						{/if}
+					</div>		
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3"><span class="reqIcon"></span>En promocion</label>
+					<div class="col-md-9">
+						{if !$info}
+                        	<input type="checkbox"  name="promocion" />
+                         {else}
+                        	<input type="checkbox"  name="promocion" {if $info.promocion  eq 'si'}checked{/if} />
+                        {/if}
+					</div>		
+				</div>
+				 <div class="form-group">
+				 <label class="control-label col-md-3"><span class="reqIcon"></span> Imagen del producto </label>
 					<div class="col-md-9">
 					 {if !$info}
 						<input type="file" name="img_pcat" id="img_pcat" class="form-control" />
@@ -48,6 +89,7 @@
 					{/if}
 					</div>
 				 </div>
+
 				 
              </div>         
              </form>

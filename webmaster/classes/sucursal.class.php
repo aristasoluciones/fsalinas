@@ -7,6 +7,9 @@ class Sucursal extends Main
 	private $descripcion;
 	private $encargado;
 	private $direccion;
+	private $cordenaday;
+	private $cordenadax;
+	private $horario;
 
 	public function setId($value){
 		$this->Util()->ValidateInteger($value);
@@ -36,8 +39,21 @@ class Sucursal extends Main
 			$this->direccion = $value;
 		}
 	}
-    
-    
+	public function setCordenadaX($value){
+			$this->Util()->ValidateNumeric($value, 'Cordenada X',"Negativo");
+			$this->cordenadax = $value;
+		
+	}
+    public function setCordenadaY($value){
+			$this->Util()->ValidateNumeric($value, 'Cordenada Y','Negativo');
+			$this->cordenaday = $value;
+		
+	}
+    public function setHorario($value){
+			$this->Util()->ValidateString($value, 100, 0, '');
+			$this->horario = $value;
+	}
+
     
 	
 	public function Info(){
@@ -86,14 +102,23 @@ class Sucursal extends Main
 		$sql = "
 		INSERT INTO  sucursal (
 				`nombre`, 
-				`productos`,
+				`descripcion`,
 				`encargado`,
-				`direccion`
+				`direccion`,
+				`coordenadaX`,
+				`coordenadaY`,
+				`horario`,
+				`status`
 				)
 				VALUES (
 				'".$this->nombre."',
-				'".date('Y-m-d')."',
-				'".$_SESSION['Usr']['usuario']."'
+				'".$this->descripcion."',
+				'".$this->encargado."',
+				'".$this->direccion."',
+				'".$this->cordenadax."',
+				'".$this->cordenaday."',
+				'".$this->horario."',
+				'Activo'
 				);
 		";
 		$this->Util()->DB()->setQuery($sql);
@@ -111,10 +136,12 @@ class Sucursal extends Main
 		$sql = 'UPDATE 
 				sucursal SET 
 				nombre = "'.$this->nombre.'",
-				productos = "'.$this->descripcion.'",
+				descripcion = "'.$this->descripcion.'",
 				encargado = "'.$this->encargado.'",
-				direccion = "'.$this->direccion.'"					
-				
+				direccion = "'.$this->direccion.'",
+				coordenadaX = "'.$this->cordenadax.'",
+				coordenadaY = "'.$this->cordenaday.'",
+				horario = "'.$this->horario.'"					
 				WHERE sucursalid = "'.$this->id.'"';
 				
 		$this->Util()->DB()->setQuery($sql);
@@ -129,14 +156,30 @@ class Sucursal extends Main
 	public function Delete(){
 		
 		$sql = 'UPDATE 
-				requisitos SET 
-				status = "baja"
-				WHERE catalogo_tramite_id = "'.$this->id.'"';
+				sucursal SET 
+				status = "Baja"
+				WHERE sucursalid = "'.$this->id.'"';
 				
 		$this->Util()->DB()->setQuery($sql);
 		$this->Util()->DB()->UpdateData();
 			
-		$this->Util()->setError(3, 'error', '');
+		$this->Util()->setError(4, 'complete', '');
+		$this->Util()->PrintErrors();
+		
+		return true;
+		
+	}//Delete
+	public function ActiveSucursal(){
+		
+		$sql = 'UPDATE 
+				sucursal SET 
+				status = "Activo"
+				WHERE sucursalid = "'.$this->id.'"';
+				
+		$this->Util()->DB()->setQuery($sql);
+		$this->Util()->DB()->UpdateData();
+			
+		$this->Util()->setError(5, 'complete', '');
 		$this->Util()->PrintErrors();
 		
 		return true;

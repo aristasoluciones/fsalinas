@@ -5,6 +5,7 @@ $property['error'][2] = 'Has insertado satisfactoriamente un Registro';
 $property['error'][3] = 'El Registro se elimino Exitosamente';
 $property['error'][4] = 'El Registro se dio de baja correctamente';
 $property['error'][5] = 'El Registro se activo correctamente';
+$property['error'][6] = 'El Registro se actualizo correctamente';
 
 $property['error'][10000] = 'La cadena tiene muy pocos caracteres Campo';
 $property['error'][10001] = 'No es un URL Valido';
@@ -20,10 +21,12 @@ $property['error'][10012] = 'Este usuario ya esta tomado';
 $property['error'][10013] = 'Campo requerido';
 $property['error'][10014] = 'Por favor, ingrese un email v&aacute;lido.';
 $property['error'][10015] = 'Formato de RFC inv&aacute;lido.';
-$property['error'][10016] = 'Ingrese un valor v&aacute;lido';
+$property['error'][10016] = 'Ingrese solo valores numericos';
 $property['error'][10017] = 'La fecha de cobro fue actualizado correctamente';
 $property['error'][10018] = 'El importe es mayor que el saldo actual';
 $property['error'][10019] = 'Solo se aceptan valores positivos';
+
+$property['error'][10055] = 'Solo se aceptan valores numericos';
 
 $property['error'][10100] = 'El cliente fue creado correctamente.';
 $property['error'][10101] = 'El cliente fue actualizado correctamente.';
@@ -75,5 +78,7 @@ $property['error'][10136] = 'Archivo no adjunto';
 $property['error'][10137] = 'Hubo un error al mover archivo intentelo de nuevo';
 
 $property['error'][10138] = 'Solo se aceptan imagenes PNG / JPG revisar archivo';
+$property['error'][10139] = 'Solo se aceptan archivos ';
+$property['error'][10140] = 'El catalogo electronico se actualizo correctamente ';
 
 ?>

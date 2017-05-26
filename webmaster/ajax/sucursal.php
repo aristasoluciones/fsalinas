@@ -35,10 +35,20 @@
 																
 			break;
 		case 'save':
+
+		  		if($_POST["cordenaday"]=="")
+		        	$_POST["cordenaday"] = 0;
+
+		        if($_POST["cordenadax"]=="")
+		        	$_POST["cordenadax"] = 0;
+
 				$sucursal->setNombre($_POST['nombre']);
 				$sucursal->setEncargado($_POST['encargado']);
 				$sucursal->setDireccion($_POST['direccion']);
 				$sucursal->setDescripcion($_POST['descripcion']);
+				$sucursal->setCordenadaY($_POST['cordenaday']);
+				$sucursal->setCordenadaX($_POST['cordenadax']);
+				$sucursal->setHorario($_POST['horario']);
 				//$sucursal->setClave($_POST['clave_tramite']);
 				$success = $sucursal->Save();
 				
@@ -51,11 +61,20 @@
 				
 			break;
 		case 'update':
+		        if($_POST["cordenaday"]=="")
+		        	$_POST["cordenaday"] = 0;
+
+		        if($_POST["cordenadax"]=="")
+		        	$_POST["cordenadax"] = 0;
+
 		        $sucursal->setId($_POST['id']);
 				$sucursal->setNombre($_POST['nombre']);
 				$sucursal->setEncargado($_POST['encargado']);
 				$sucursal->setDireccion($_POST['direccion']);
 				$sucursal->setDescripcion($_POST['descripcion']);
+				$sucursal->setCordenadaY($_POST['cordenaday']);
+				$sucursal->setCordenadaX($_POST['cordenadax']);
+				$sucursal->setHorario($_POST['horario']);
 				$success = $sucursal->Update();
 				if($success){									
 					echo 'ok[#]';									
@@ -66,15 +85,27 @@
 				
 			break;
 								
-		case 'delete':
+		case 'remove':
 				
-				$dependencia->setId($_POST['id']);
-				
-				if($dependencia->Delete()){					
+				$sucursal->setId($_POST['id']);
+				if($sucursal->Delete()){					
 					echo 'ok[#]';				
+				}else
+				{
+					echo 'fail[#]';
 				}
 				
-			break;
+	    break;
+	    case 'activar':
+				$sucursal->setId($_POST['id']);
+				if($sucursal->ActiveSucursal()){					
+					echo 'ok[#]';				
+				}else
+				{
+					echo 'fail[#]';
+				}
+				
+	    break;
 		
 		case 'loadPage':
 		

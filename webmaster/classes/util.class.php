@@ -127,11 +127,11 @@ class Util extends Error
 		}
 	}
 	
-	function ValidateDecimal($number)
+	function ValidateDecimal($number,$field = '')
 	{
 		if (!is_numeric($number))
 		{			
-			$this->setError(10055, 'error', '', 'Monto de la Renta');
+			$this->setError(10055, 'error', '', 'Solo se aceptan numeros en el campo',$field);
 			return false;
 		}
 
@@ -1488,6 +1488,22 @@ class Util extends Error
 		}
 		return $new_array;
 	}
+	function return_bytes($val) {
+	    $val = trim($val);
+	    $last = strtolower($val[strlen($val)-1]);
+
+	    switch($last) {
+	        // El modificador 'G' está disponble desde PHP 5.1.0
+	        case 'g':
+	            $val *= 1024;
+	        case 'm':
+	            $val *= 1024;
+	        case 'k':
+	            $val *= 1024;
+	    }
+
+	    return $val;
+    }
 	
 }
 
