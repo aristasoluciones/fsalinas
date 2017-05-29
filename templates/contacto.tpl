@@ -7,126 +7,109 @@
 	{include file="{$DOC_ROOT}/templates/1-default-meta.tpl"}
 	{include file="{$DOC_ROOT}/templates/2-default-css.tpl"}-->
 	{include file="{$DOC_ROOT}/templates/header.tpl"}
+	
+<style type="text/css"> 
+
+
+
+</style>
 </head>
 
-<body  onload="initialize()">
+<body class="" >
 	<div id="wrap" class="colorskin-0">
-		<div id="sticker">
-			<header id="header">
-				<div  class="container">
-					<div class="four columns">
-					<div class="logo">
-					<a href="#"><img src="{$WEB_ROOT}/images/logo-1.png" width="" id="img-logo" alt="logo"></a>
-					</div>
-					</div>		
 				{include file="{$DOC_ROOT}/templates/menus/main.tpl"}
-				</div>
-				<div id="search-form2">
-					<form action="#" method="get">
-						<input type="text" class="search-text-box2">
-					</form>
-				</div>
-			</header>
-		</div>
-			{**include file="{$DOC_ROOT}/templates/slider.tpl"}
-			{include file="{$DOC_ROOT}/templates/seccion1.tpl"}
-			{include file="{$DOC_ROOT}/templates/seccion2.tpl"}
-			{include file="{$DOC_ROOT}/templates/seccion3.tpl"}
-			{include file="{$DOC_ROOT}/templates/footer.tpl"**}
-			
-			<section id="headline">
+<section id="headline">
+    <div class="container">
+
+	  <h3><font color="#622181">Contacto</font></h3>	
+    </div>
+</section>
+
+
+<section class="container page-content" >
 	
-				<div class="container">
-				<!-- end-hero-->
-				<h3>OFICINAS CENTRALES EMFRICH</h3>
-					
-				</div>
-				
-			</section>
-			<section class="container page-content" >
+	<!--
+	<table>
+		<tr>
+			<td>
+				Producto:<input type="text" name="" id="">
+			</td>
+			<td>
 
-				<hr class="vertical-space3">
-				<div class="seven columns contact-inf">
-
-				<h4>Información de Contacto:</h4>
-				<br>
-
-				<p><strong>Dirección:</strong></p>
-				<p>
-				 15 Norte entre 5a y 6a poniente, Tuxtla Gutierrez Chiapas,C.p 29000  </p>
-				<div style="top:100%; position:relative;  ">
-				<a href="#map_canvas">
-					<img src="images/maps-ico.jpg" width="10%">
-					¿Como llegar?</a>
-				</div>
-				<br>
-				<p><strong>Telefonos:</strong></p>
-				<p>
-				<br />
-				  <br />
-				
-				</p>
-				<br />
-				<p><strong>Email:</strong></p>
-				<p>
-				ventas@emfrich.com.mx<br />				
-				</p>
-				<br />
-				<hr class="boldbx">
-				<p>
-				<br>
-				</div>
-
-				<div class="eight columns offset-by-one">
-				<div class="contact-form">
-				<div class="clr"></div><br />
-
-
-				<form id="frmGral" name="" method="post">
-					<input type="hidden" name="type" id="type" value="enviarCorreo">
-					<h5>Nombre</h5>
-					<input id="txtName" title="Se Necesita el Nombre" name="txtName" type="text" class="txbx" value="" required/><br />
-					<h5>Correo</h5>
-					<input id="txtEmail" name="email" type="email"  pattern="" class="txbx" value="" required/><br />
-					<h5>Teléfono</h5>
-					<input id="txtEmail" title="Solo Numeros" name="telefono" type="text" class="txbx" value="" required/><br />
-					<h5>Asunto</h5>
-					<input id="txtSubject" name="asunto" type="text" class="txbx" value="" required/><br />
-					<div class="erabox">
-					<h5>Mensaje</h5>
-					<textarea id="txtText" name="mensaje" class="txbx era" required/></textarea><br />
-					
-
-					<div id="spanMessage">
+				Order Por:
+				<select name="order" id="order">
+					<option>Nombre</option>
+					<option>Precio</option>
+				</select>
+			</td>
+		</tr>
+	</table>-->
+	
+	
+    <hr class="vertical-space2">
+    <section class="eleven columns">
+	<div class="shop-wrap">
+	<p class="result-count">
+	</p>
+	<br class="clr">
+	<div class="shop-wrap">
+		{foreach from=$lstSucursales item=item key=key}       
+				 <div class="post-bottom-section">
+				  <div class="right">
+					<div class="navigation">
+					  <div class="alignleft"></div>
+					  <div class="alignright"></div>
 					</div>
-					</div>
-				</form>
-					<div id="respuesta"></div>
-					
-					<button  onclick="enviarCorreo()" class="sendbtn btnSend">Enviar</button>
+					<ol class="commentlist">
+					  <li class="comment even thread-even depth-1" id="comment-2">
+						<div class="comment-info"> <img src="{$WEB_ROOT}/images/b1.jpg" alt="" style="width:4%">
+						<cite> {$item.nombre}
+						  <span class="comment-data"><a href="#comment-2" title=""></a></span> </cite> </div>
+						<div class="comment-text">
+						  <p>{$item.telefono}</p>
+						</div>
+					  </li>
 
-
-
-				</div><!-- end-contact-form  -->
-
+					</ol>
+				  </div>
 				</div>
-				<div class="white-space"></div>
-			</section>
-			<section class="full-width">
-			<div id="contact-map">
-			 <div id="map_canvas" style="width:1500px; height:500px"></div>
-			 <!-- END-Google Map -->
-			</div><!-- END-contact Map -->     
-			</section><!-- END-Google Map Section -->
-							
+		{/foreach}
 	</div>
+	
+		<hr class="vertical-space1">
+     
+	  <hr class="vertical-space2">
+	</section>
+    <!-- end-main-content -->
+    <aside class="four columns offset-by-one sidebar">
+		<div id="divCar">
+
+				<img src="{$WEB_ROOT}/images/nosotros.png" width="900" id="img-logo" alt="logo">
+		</div>
+	  <br class="clear">
+
+      <br class="clear">
+    
+      <br class="clear">
+
+      <!-- end-product-list -->
+      <br class="clear">
+      
+	  </aside>
+
+    <br class="clear">
+  </section>
+
+    </div>
+  {**include file="{$DOC_ROOT}/templates/seccion3.tpl"**}
+	{include file="{$DOC_ROOT}/templates/footer.tpl"}
+			
 	{include file="{$DOC_ROOT}/templates/3-default-js.tpl"}
 	<script type="text/javascript">
 		jQuery(document).ready(function() {    
 		   App.init(); // initlayout and core plugins		   
 		});
 	</script>
-
     
 </body>
 </html>

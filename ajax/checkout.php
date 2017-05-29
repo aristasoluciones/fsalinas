@@ -21,7 +21,13 @@ switch($_POST['type']){
 
 		if($producto->NextPedido()){
 			echo "ok[#]";
+			
 			$infoVta = $producto->infoVenta();
+			$lstDir = $producto->misDirecciones();
+			$lstRFC = $producto->misRFC();
+			
+			$smarty->assign('lstRFC',$lstRFC);
+			$smarty->assign('lstDir',$lstDir);
 			$smarty->assign('infoVta',$infoVta);
 			$smarty->display(DOC_ROOT.'/templates/lists/checkout.tpl');
 		}else{
@@ -29,6 +35,49 @@ switch($_POST['type']){
 				$util->ShowErrors();					
 			}
 		
+	
+	break;
+	
+	
+	case "addDireccion":
+		
+		echo "ok[#]";
+	
+		$producto->setDireccionId($_POST["direccionId"]);
+		$infoVta = $producto->infoDireccion();
+		
+// echo "<pre>"; print_r($infoVta);
+		// exit;
+		$smarty->assign('infoVta',$infoVta);
+		$smarty->display(DOC_ROOT.'/templates/lists/direccion.tpl');
+		
+	break;
+	
+	case "addRFC":
+	
+		
+		echo "ok[#]";
+		$producto->setRfcId($_POST["rfcId"]);
+		$infoVta = $producto->infoRfc();
+
+		$smarty->assign('infoVta',$infoVta);
+		$smarty->display(DOC_ROOT.'/templates/lists/rfc.tpl');
+	break;
+	
+	
+	case "enviarPedido";
+	
+		if(count($_SESSION["carrito"])<=0){
+			echo "fail[#]";
+			echo "No Existen Productos en el carrito de compras";
+			exit;
+		}
+	
+		if($producto->enviarPedido()){
+			echo "ok[#]";
+		}else{
+			echo "fail[#]";
+		}
 	
 	break;
 	

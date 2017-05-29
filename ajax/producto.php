@@ -20,6 +20,16 @@ switch($_POST['type']){
 
 		if(!is_array($_SESSION["carrito"]))
 		$_SESSION["carrito"]=array();
+	
+		foreach($_SESSION["carrito"] as $key=>$aux){
+			
+			if($aux["Id"]== $_POST["Id"]){
+				echo "fail[#]";
+				echo "El Producto ya existe dentro del carrito de compras";
+				exit;
+			}
+			
+		}
 		
 		end($_SESSION["carrito"]);
 		$key1 = key($_SESSION["carrito"]) + 1;
@@ -50,6 +60,22 @@ switch($_POST['type']){
 	
 	break;
 		
+		
+	case "buscar":
+	
+		echo "ok[#]";
+
+		
+			// echo "<pre>"; print_r($_POST);
+			// exit;
+		$imagen->setValor($_POST["q"]);
+		$imagen->setNombre($_POST["producto"]);
+		$imagen->setOrder($_POST["order"]);
+		$InfoCategoria = $imagen->InfoCategoria();
+		$smarty->assign('InfoCategoria',$InfoCategoria);
+		$smarty->display(DOC_ROOT.'/templates/lst-producto.tpl');
+		
+	break;
 	
 }//switch
 	

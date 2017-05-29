@@ -37,9 +37,15 @@
 			<ul id="nav" class="sixteen columns">
 			<li class="current"><a data-description="Start here" class="drp-aro" href="{$WEB_ROOT}/index">Inicio</a>
 			  </li>
-			<li><a data-description="meet florida" class="drp-aro" href="{$WEB_ROOT}/nosotros">Nosotros </a>
-
-			  </li>
+			{if $page eq "index"}
+			<li>
+				<a data-description="meet florida" class="drp-aro" href="javascript:void(0)" onClick="openNewN()">Nosotros </a>
+			</li>
+			{else}
+			<li>
+				<a data-description="meet florida" class="drp-aro" href="{$WEB_ROOT}/nosotros">Nosotros </a>
+			</li>
+			{/if}
 			  {if $page eq "index"}
 				<li><a data-description="template features" class="drp-aro"  href="javascript:void(0)" onClick="openNew()">Productos </a>
 			  </li>
@@ -53,7 +59,9 @@
 					  </li>
 				{/if}
 			
-			  
+			<li>
+				<a data-description="meet florida" class="drp-aro" href="javascript:void(0)" onClick="openNewP()">Promociones </a>
+			</li>
 			<li><a data-description="Our idea" href="#">Sucursales </a>
 				<ul>
 					{foreach from=$lstSucursales item=item key=key}       
@@ -63,7 +71,7 @@
 			  </li>
 			<li><a data-description="We have done" class="drp-aro" href="{$WEB_ROOT}/ubicanos">Ubícanos</a>
 			  </li>
-			<li><a data-description="Mega Menu" href="#">Contacto</a>
+			<li><a data-description="Mega Menu" href="{$WEB_ROOT}/contacto">Contacto</a>
 				</li>
 			</ul>
 		</div>

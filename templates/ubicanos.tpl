@@ -22,8 +22,7 @@
 	
 				<div class="container">
 				<!-- end-hero-->
-				<h3>UBICA TU SUCURSAL</h3>
-					
+					<h3><font color="#622181">UBICA TU SUCURSAL</font></h3>	
 				</div>
 				
 			</section>

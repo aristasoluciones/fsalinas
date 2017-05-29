@@ -118,10 +118,13 @@ content: " ";
 			{**include file="{$DOC_ROOT}/templates/seccion1.tpl"**}
 			{**include file="{$DOC_ROOT}/templates/seccion2.tpl"**}
 			{**include file="{$DOC_ROOT}/templates/seccion3.tpl"**}
-			<div id="divProo" <!--class="bloque" data-rotate-x="90deg" data-move-z="-500px" data-move-y="200px"-->>
+			<div id="divNosotros">
+			{include file="{$DOC_ROOT}/templates/seccion6.tpl"}
+			</div>
+			<div id="divProo" <!--class="bloque" data-rotate-x="90deg" data-move-z="-500px" data-move-y="200px"-->
 			{include file="{$DOC_ROOT}/templates/seccion5.tpl"}
 			</div>
-			<div id="divProo5" <!--class="bloque" data-rotate-x="90deg" data-move-z="-500px" data-move-y="200px"-->>
+			<div id="divProo5" <!--class="bloque" data-rotate-x="90deg" data-move-z="-500px" data-move-y="200px"-->
 			{include file="{$DOC_ROOT}/templates/seccion4.tpl"}
 			</div>
 			{include file="{$DOC_ROOT}/templates/footer.tpl"}

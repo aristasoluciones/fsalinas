@@ -26,6 +26,11 @@ class Imagen extends Main
 	
 	
 	
+	public function setOrder($value){
+		// $this->Util()->ValidateInteger($value);
+		$this->order = $value;
+	}
+	
 	public function setCantidad($value){
 		// $this->Util()->ValidateInteger($value);
 		$this->cantidad = $value;
@@ -184,6 +189,8 @@ class Imagen extends Main
 		
 			$ikey =  New Ikey;
 			
+			$filtro = "";
+			$$order = "";
 		
 			$ikey->setValor($this->valor);
 			$ikey->setCampo('categoriaId');
@@ -194,22 +201,39 @@ class Imagen extends Main
 			$this->Util()->DB()->setQuery($sql);
 			$info = $this->Util()->DB()->GetRow();
 			
-
 			
-			$sql = 'SELECT COUNT(*)	FROM productos_categorias WHERE categoria_id = '.$info["categoriaId"].'';
+			if($this->nombre){
+				$filtro .= " and nombre like '%".$this->nombre."%'";
+			}
+			
+			if($this->order){
+				if($this->order=="Nombre"){
+					$order .= " ORDER BY nombre ASC";
+				}else{
+					$order .= " ORDER BY precioActual ASC";
+				}
+				
+			}else{
+				$order .= " ORDER BY nombre ASC";
+			}
+			
+
+		
+			$sql = 'SELECT COUNT(*)	FROM productos_categorias WHERE 1 '.$filtro.' categoria_id = '.$info["categoriaId"].'';
 			$this->Util()->DB()->setQuery($sql);
 			$total = $this->Util()->DB()->GetSingle();
-			
+				
 			$resPage = $this->Util->HandlePagesAjax($this->page, $total , '');		
 			$sqlLim = "LIMIT ".$resPage['pages']['start'].", ".$resPage['pages']['items_per_page'];
 			 
-			$sql = 'SELECT * FROM productos_categorias 
+		 	$sql = 'SELECT * FROM productos_categorias 
 					WHERE 1 '.$filtro.' and categoria_id = '.$info["categoriaId"].'
-					ORDER BY nombre ASC
+					'.$order.'
 					'.$sqlLim;
+					
 			$this->Util()->DB()->setQuery($sql);
 			$data['result'] = $this->Util()->DB()->GetResult();
-			
+			// exit;
 			foreach($data['result'] as $key=>$aux){
 				$ikey->setCampo($aux["producto_categoria_id"]);
 				$IdCifrado =  $ikey->Cifrar();

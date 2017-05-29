@@ -15,22 +15,20 @@
     </thead>
     <tbody>
 
-    	{foreach from=$lstCar.carrito item=item key=key}        	
+    	{foreach from=$lstCar.result item=item key=key}        	
         <tr class="odd gradeX">
 			<td>
 			{$key+1}
 			</td>
-			<td>
-				<img src="{$WEB_ROOT}/images/productos_categorias/{$item.nombre_archivo}{$item.extension}" alt="">
-			</td>
+			<td><div align="center">{$item.fecha}</div></td>
             <td>
 				{$item.nombre}<br>
 				{$item.descripcion}
 			</td>
-			<td><div align="center">${$item.precioActual|number_format:2:'.':','}</div></td>
-            <td><div align="center"><input type="" name="cantidad_{$key}" id="cantidad_{$key}" value="{$item.cantidad}" style="width:50px"></div></td>
-            <td><div align="center">${$item.total|number_format:2:'.':','}</div></td>
-            <td></td>
+			<td><div align="center">${$item.subtotal|number_format:2:'.':','}</div></td>
+            <td><div align="center">$</div></td>
+            <td><div align="center">${$item.montoTotal|number_format:2:'.':','}</div></td>
+            <td><div align="center">{$item.estatus}</div></td>
 
         </tr>
 		

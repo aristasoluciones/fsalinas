@@ -51,7 +51,7 @@ class User extends Main
 		$Usr = $_SESSION['Usr'];
 						
 		if(!$Usr['isLogged']){
-			header('Location: '.WEB_ROOT.'/login');
+			header('Location: '.WEB_ROOT.'/login-customer');
 			exit;
 		}
 				
