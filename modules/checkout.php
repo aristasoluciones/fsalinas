@@ -4,10 +4,11 @@
 	$user->AllowAccess();	
 	/* End Session Control */
 	// $producto->setValor($_GET["q"]);
+	// exit;
 	$infoVta = $producto->infoVenta(); 	
 
 	$lstDir = $producto->misDirecciones();
-	// exit;
+	
 	$lstRFC = $producto->misRFC();
 	
 	$lstCar = $producto->detalleCarrito();

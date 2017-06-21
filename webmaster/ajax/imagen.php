@@ -53,7 +53,7 @@
                 	$imagen->setProductoId(0);
                 	$imagen->setDescripcion("no aplica");
                 	$prefix =  "slider";
-                	$urldestino=DOC_ROOT_IMG."/slide-emfrich/";
+                	$urldestino=DOC_ROOT_IMG."/slider/";
                 }
                 //guardar en  bae de datos y archivo
                 $last_id = $imagen->getLastId();

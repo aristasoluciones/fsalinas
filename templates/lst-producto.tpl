@@ -11,7 +11,7 @@
 				<span class="onsale">Oferta!</span>
 			{/if}
 				
-			 <a href="{$WEB_ROOT}/dt/q/{$item.productoId}"><img src="{$WEB_ROOT}/images/productos_categorias/{$item.nombre_archivo}{$item.extension}" alt=""></a>
+			 <a href="{$WEB_ROOT}/dt/q/{$item.productoId}"><img src="{$WEB_ROOT}/images/productos_categorias/{$item.nombre_archivo}.{$item.extension}" alt=""></a>
 			<figcaption>
 				<h4><a href="{$WEB_ROOT}/dt/q/{$item.productoId}" style="color:#622181">{$item.nombre}</a> </h4>
 				  <p class="price">

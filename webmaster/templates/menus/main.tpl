@@ -20,10 +20,10 @@
        <h3 class="uppercase">Menu de opciones</h3>
     </li>
     {if in_array('configuracion',$privilegios) or $Usr.role_id eq 1} 
-    <li class="nav-item {if $page=='config' || $page=='usuario' || $page=='rol' || $page=='config_role' || $page=='perm_accion'|| $page=='cat_electronico'|| $page=='nota'}active open{/if}">
+    <li class="nav-item {if $page=='config' || $page=='usuario' || $page=='rol' || $page=='config_role' || $page=='perm_accion'}active open{/if}">
         <a href="javascript:;" class="nav-link nav-toggle">
         <i class="icon-settings"></i> 
-        <span class="title">Configuracion </span>
+        <span class="title">Configuracion Sistema</span>
        {if $page =='rol' ||$page=='config_role'|| $page=='perm_accion'|| $page=='usuario'|| $page=='cat_electronico'|| $page=='nota'}
 		 <span class="selected"></span>
          <span class="arrow open"></span>
@@ -32,22 +32,7 @@
         {/if}
         </a>
         <ul class="sub-menu">
-        	{if in_array('cat_electronico',$privilegios) or $Usr.role_id eq 1} 
-	        	<li class="nav-item {if $page=='cat_electronico'}active open{/if}">
-					<a class="nav-link " href="{$WEB_ROOT}/cat_electronico">
-						<i class="icon-settings"></i>
-						<span class="title">Catalogo electronico</span>
-					</a>
-				</li>
-			{/if}
-			{if in_array('cat_electronico',$privilegios) or $Usr.role_id eq 1} 
-	        	<li class="nav-item {if $page=='nota'}active open{/if}">
-					<a class="nav-link " href="{$WEB_ROOT}/nota">
-						<i class="icon-settings"></i>
-						<span class="title">Nota del mes</span>
-					</a>
-				</li>
-			{/if}
+        	
        		{if in_array('perm_accion',$privilegios) or $Usr.role_id eq 1} 
 	        	<li class="nav-item {if $page=='perm_accion'}active open{/if}">
 					<a class="nav-link " href="{$WEB_ROOT}/perm_accion">
@@ -76,10 +61,10 @@
 	</li>  
 	{/if}
 	{if in_array('catalogo',$privilegios) or $Usr.role_id eq 1} 
-    <li class="nav-item {if $page =='sucursal' ||$page=='producto'||$page=='imagen'||$page=='puesto'||$page=='producto_cat'||$page=='cliente'}active open{/if}">
+    <li class="nav-item {if $page =='imagenes' || $page =='sucursal' ||$page=='producto'||$page=='imagen'||$page=='puesto' ||  $page=='nota' ||$page=='producto_cat'||$page=='cliente' || $page=='cat_electronico'}active open{/if}">
         <a href="javascript:;" class="nav-link nav-toggle">
         <i class="icon-briefcase"></i> 
-        <span class="title">Catalogos</span>
+        <span class="title">Pagina Web</span>
 		{if $page=='sucursal'||$page=='producto' || page=='puesto' || page=='imagen' || page=='producto_cat'|| page=='cliente'}
 		 <span class="selected"></span>
          <span class="arrow open"></span>
@@ -89,11 +74,43 @@
 		
         </a>
         <ul class="sub-menu">
+			{if in_array('cat_electronico',$privilegios) or $Usr.role_id eq 1} 
+	        	<li class="nav-item {if $page=='cat_electronico'}active open{/if}">
+					<a class="nav-link " href="{$WEB_ROOT}/cat_electronico">
+						<i class="icon-settings"></i>
+						<span class="title">Catalogo electronico</span>
+					</a>
+				</li>
+			{/if}
+			{if in_array('cliente',$privilegios) or $Usr.role_id eq 1} 
+			<li class="nav-item {if $page=='cliente'}active open{/if}">
+				<a class="nav-link " href="{$WEB_ROOT}/cliente">
+					<i class="icon-user"></i>
+					<span class="title">Clientes</span>
+				</a>
+			</li>
+			{/if}
+			{if in_array('imagen',$privilegios) or $typeUser==1} 
+			<li class="nav-item {if $page=='imagenes'}active open{/if}">
+				<a class="nav-link " href="{$WEB_ROOT}/imagenes">
+					<i class="icon-briefcase"></i>
+					<span class="title">Imagenes</span>
+				</a>
+			</li>
+			{/if}
+			{if in_array('cat_electronico',$privilegios) or $Usr.role_id eq 1} 
+	        	<li class="nav-item {if $page=='nota'}active open{/if}">
+					<a class="nav-link " href="{$WEB_ROOT}/nota">
+						<i class="icon-settings"></i>
+						<span class="title">Nota del mes</span>
+					</a>
+				</li>
+			{/if}
            {if in_array('producto',$privilegios) or $Usr.role_id eq 1} 
 			<li class="nav-item {if $page=='producto'||$page=='producto_cat'}active open{/if}">
 				<a class="nav-link " href="{$WEB_ROOT}/producto">
 					<i class="icon-briefcase"></i>
-					<span class="title">Categorias de producto</span>
+					<span class="title">Productos</span>
 				</a>
 			</li>
 			{/if}
@@ -105,14 +122,7 @@
 				</a>
 			</li>
 			{/if}
-			{if in_array('cliente',$privilegios) or $Usr.role_id eq 1} 
-			<li class="nav-item {if $page=='cliente'}active open{/if}">
-				<a class="nav-link " href="{$WEB_ROOT}/cliente">
-					<i class="icon-user"></i>
-					<span class="title">Clientes</span>
-				</a>
-			</li>
-			{/if}
+			
 			{if in_array('puesto',$privilegios) or $typeUser==1} 
 			<!--<li class="nav-item {if $page=='puesto'}active open{/if}">
 				<a class="nav-link " href="{$WEB_ROOT}/puesto">
@@ -129,6 +139,7 @@
 				</a>
 			</li>-->
 			{/if}
+			
 			
         </ul>
 	</li> 

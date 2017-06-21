@@ -343,6 +343,8 @@ class Producto extends Main
 			$info = $this->Util()->DB()->GetRow();
 			
 			$carrito[$key]["key"] = $key;
+			$carrito[$key]["nombre_archivo"] = $info["nombre_archivo"];
+			$carrito[$key]["extension"] = $info["extension"];
 			$carrito[$key]["nombre"] = $info["nombre"];
 			$carrito[$key]["precioActual"] = $info["precioActual"];
 			$carrito[$key]["cantidad"] = $aux["cantidad"];
@@ -644,6 +646,11 @@ class Producto extends Main
 		
 		$ikey = New Ikey;
 		
+		
+		 $_SESSION['Usr']["usuarioId"];
+		
+		
+		
 		$ikey->setValor($_SESSION['Usr']["usuarioId"]);
 		$ikey->setCampo('clienteId');
 		$usuarioId = $ikey->Descifrar();
@@ -674,7 +681,7 @@ class Producto extends Main
 			left join 	direcciones as d on d.direccionId = v.direccionId 
 			left join 	rfc as r on r.rfcId = v.rfcId 
 			WHERE estatus =  "captura" and v.clienteId = '.$infoClt["clienteId"].'';
-
+// exit;
 		$this->Util()->DB()->setQuery($sql);
 		$info = $this->Util()->DB()->GetRow();
 		

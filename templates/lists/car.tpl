@@ -17,7 +17,7 @@
     	{foreach from=$lstCar.carrito item=item key=key}        	
         <tr class="odd gradeX">
 			<td>
-				<img src="{$WEB_ROOT}/images/productos_categorias/{$item.nombre_archivo}{$item.extension}" alt="">
+				<img src="{$WEB_ROOT}/images/productos_categorias/{$item.nombre_archivo}.{$item.extension}" alt="">
 			</td>
             <td>
 				{$item.nombre}<br>

@@ -1248,6 +1248,24 @@ class Imagen extends Main
 		return $info;
 		
 	}
+	
+	public function getSliderPrincipal(){
+		
+		 $sql = '
+				SELECT 
+					* 
+				FROM 
+					  imagen
+				WHERE  tipo = "slider" and activo = "si"';
+				// exit;
+				$this->Util()->DB()->setQuery($sql);
+				$info = $this->Util()->DB()->GetResult();
+				
+		
+				
+		return $info;
+		
+	}
 						
 }
 
