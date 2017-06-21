@@ -67,7 +67,7 @@
         </ul>
 	</li>  
 	{/if}
-	{if in_array('catalogo',$privilegios) or $Usr.role_id eq 1} 
+	{if in_array('pagina_web',$privilegios) or $Usr.role_id eq 1} 
     <li class="nav-item {if $page =='imagenes' || $page =='sucursal' ||$page=='producto'||$page=='imagen'||$page=='puesto' ||  $page=='nota' || $page=='producto_cat'|| $page=='cliente' || $page=='cat_electronico'}active open{/if}">
         <a href="javascript:;" class="nav-link nav-toggle">
         <i class="icon-briefcase"></i> 
@@ -153,7 +153,7 @@
 	{/if}
 
 	<!-- SECCION PEDIDOS-->
-	{if in_array('pedidos',$privilegios) or $Usr.role_id eq 1} 
+	{if in_array('pedido',$privilegios) or $Usr.role_id eq 1} 
 	 <li class="nav-item {if $page =='pedido' || $page =='detalle-pedido'}active open{/if}">
         <a href="javascript:;" class="nav-link nav-toggle">
         <i class="icon-list"></i> 
@@ -166,11 +166,11 @@
 		{/if}
         </a>
         <ul class="sub-menu">
-       		{if in_array('pedido',$privilegios) or $Usr.role_id eq 1} 
+       		{if in_array('lista_pedido',$privilegios) or $Usr.role_id eq 1} 
         	<li class="nav-item {if $page=='pedido' || $page =='detalle-pedido'}active open{/if}">
 				<a class="nav-link " href="{$WEB_ROOT}/pedido">
 					<i class="icon-list"></i>
-					<span class="title">Pedidos</span>
+					<span class="title">Lista de pedidos</span>
 				</a>
 			</li>
 			{/if}

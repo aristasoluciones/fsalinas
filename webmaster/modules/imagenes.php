@@ -1,7 +1,7 @@
 <?php	
 	//comprobar privilegios de acceso a modulo
 	if($_SESSION['Usr']["role_id"]!=1)
-	 $rbac->enforce('producto',$_SESSION['Usr']["usuarioId"]);
+	 $rbac->enforce('imagenes',$_SESSION['Usr']["usuarioId"]);
 	
 	//$cat_tramite->setAll('no');
 	$util->PrintErrors2();

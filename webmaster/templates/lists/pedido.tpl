@@ -26,7 +26,7 @@
                     </a>
                     {/if}
                 {/if}
-                {if in_array('del_pedido',$privilegios) or $Usr.role_id eq 1}
+                {if in_array('ver_pedido',$privilegios) or $Usr.role_id eq 1}
                 <a href="{$WEB_ROOT}/detalle-pedido/id/{$item.ventaId}"  title="Ver pedido">
                     <img src="{$WEB_ROOT}/images/icons/view.png" border="0">
                 </a>

@@ -22,7 +22,7 @@
             <td>{$item.email}</td>
             <td>{$item.activo}</td>
 			<td><div align="center">
-               {if in_array('edit_sucursal',$privilegios) or $Usr.role_id eq 1}
+               {if in_array('edit_cliente',$privilegios) or $Usr.role_id eq 1}
 				<a href="javascript:void(0)" onClick="EditReg({$item.clienteId})" title="Editar cliente">
 					<img src="{$WEB_ROOT}/images/png-icon/big/glyphicons_150_edit.png" border="0">
 				</a>
