@@ -6,7 +6,16 @@ class Config extends Main
 	private $titulo;
 	private $descripcion;
     private $url;
-	
+
+	private $nombre;
+	private $rfc;
+	private $direccion;
+	private $cp;
+	private $telefono;
+	private $email;
+	private $pais;
+	private $ciudad;
+	private $estado;
 
 	public function setId($value){
 		$this->Util()->ValidateInteger($value);
@@ -18,6 +27,44 @@ class Config extends Main
 			$this->descripcion = $value;
 		}
 	}
+	public function setNombre($value){
+		if($this->Util()->ValidateRequireField($value, 'Nombre')){
+			$this->Util()->ValidateString($value, 100, 0, '');
+			$this->nombre = $value;
+		}
+	}
+	public function setRfc($value){
+			$this->rfc = $value;
+		
+	}
+	public function setDireccion($value){
+			$this->direccion = $value;
+		
+	}	
+	public function setCp($value){
+			$this->cp = $value;
+		
+	}	
+	public function setTelefono($value){
+			$this->telefono = $value;
+		
+	}	
+	public function setEmail($value){
+			$this->email = $value;
+		
+	}	
+	public function setPais($value){
+			$this->pais = $value;
+		
+	}
+	public function setCiudad($value){
+			$this->ciudad = $value;
+		
+	}
+	public function setEstado($value){
+			$this->estado = $value;
+		
+	}			
 	public function setTituloNota($value){
 		if($this->Util()->ValidateRequireField($value, 'Titulo de la nota')){
 			$this->Util()->ValidateString($value, 100, 0, '');
@@ -73,6 +120,12 @@ class Config extends Main
 	//Ontener datos y listados
 	public function Info(){
 		$sql = 'SELECT * FROM permissions WHERE ID = "'.$this->id.'"';
+		$this->Util()->DB()->setQuery($sql);
+		$info = $this->Util()->DB()->GetRow();		
+		return $info;
+	}
+	public function DatosEmpresa(){
+		$sql = 'SELECT * FROM datosempresa WHERE datoEmpresaId = 1';
 		$this->Util()->DB()->setQuery($sql);
 		$info = $this->Util()->DB()->GetRow();		
 		return $info;
@@ -177,6 +230,66 @@ class Config extends Main
 
       	return $newarray;
 	}
+	public function SaveDatosEmpresa(){
+						
+		if($this->Util()->PrintErrors()){ 
+			return false; 
+		}
+		 $sql = "
+		INSERT INTO  datosempresa(
+			    `nombre`,
+			    `ciudad`, 
+			    `estado`,  
+				`pais`, 
+				`direccion`,
+				`cp`,
+				`email`,
+				`rfc`,
+				`telefono`
+				)
+				VALUES (
+				'".$this->nombre."',
+				'".$this->ciudad."',
+				'".$this->estado."',
+				'".$this->pais."',
+				'".$this->direccion."',
+				'".$this->cp."',
+				'".$this->email."',
+				'".$this->rfc."',
+				'".$this->telefono."'
+				);
+		";
+		$this->Util()->DB()->setQuery($sql);
+		$this->Util()->DB()->InsertData();
+			
+		$this->Util()->setError(10129, 'complete', 'Datos de la empresa guardadas');
+		$this->Util()->PrintErrors();
+		return true;	
+	}//Save
+	public function UpdateDatosEmpresa(){
+      if($this->Util()->PrintErrors()){ 
+			return false; 
+		}
+
+		$sql = 'UPDATE 
+				datosempresa SET 
+				nombre = "'.$this->nombre.'",
+				ciudad = "'.$this->ciudad.'",
+				estado = "'.$this->estado.'",
+				pais = "'.$this->pais.'",
+				direccion = "'.$this->direccion.'",
+				cp = "'.$this->cp.'",
+				email = "'.$this->email.'",
+				rfc = "'.$this->rfc.'",
+				telefono = "'.$this->telefono.'"			
+				WHERE datoEmpresaId = "'.$this->id.'"';
+				
+		$this->Util()->DB()->setQuery($sql);
+		$this->Util()->DB()->UpdateData();
+	    $this->Util()->setError(10129, 'complete', 'Datos de la empresa actualizadas');
+		$this->Util()->PrintErrors();
+		return true;
+	}//Update
 	
 }
 

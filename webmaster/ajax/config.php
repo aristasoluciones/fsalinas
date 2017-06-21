@@ -114,6 +114,49 @@ exit;*/
 				$smarty->display(DOC_ROOT.'/templates/lists/'.$page.'.tpl');
 				
 			break;
+		case 'saveDatosEmpresa':
+				$config->setNombre($_POST['nombre']);
+				$config->setCiudad($_POST['ciudad']);
+				$config->setEstado($_POST['estado']);
+				$config->setPais($_POST['pais']);
+				$config->setDireccion($_POST['direccion']);
+				$config->setCp($_POST['cp']);
+				$config->setEmail($_POST['email']);
+				$config->setRfc($_POST['rfc']);
+				$config->setTelefono($_POST['telefono']);
+				//$puesto->setClave($_POST['clave_tramite']);
+				$success = $config->SaveDatosEmpresa();
+				
+				if($success){									
+					echo 'ok[#]';     					
+				}else{
+					echo "fail[#]";					
+					$util->ShowErrors();					
+				}
+				
+			break;
+		case 'updateDatosEmpresa':
+		        $config->setId($_POST['id']);
+				$config->setNombre($_POST['nombre']);
+				$config->setCiudad($_POST['ciudad']);
+				$config->setEstado($_POST['estado']);
+				$config->setPais($_POST['pais']);
+				$config->setDireccion($_POST['direccion']);
+				$config->setCp($_POST['cp']);
+				$config->setEmail($_POST['email']);
+				$config->setRfc($_POST['rfc']);
+				$config->setTelefono($_POST['telefono']);
+				//$puesto->setClave($_POST['clave_tramite']);
+				$success = $config->UpdateDatosEmpresa();
+				
+				if($success){									
+					echo 'ok[#]';     					
+				}else{
+					echo "fail[#]";					
+					$util->ShowErrors();					
+				}
+				
+			break;
 			
 	break;
 }//switch

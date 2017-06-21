@@ -18,6 +18,7 @@
 <link href="{$WEB_ROOT}/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
 <!-- END THEME GLOBAL STYLES -->
 <link href="{$WEB_ROOT}/assets/pages/css/blog.min.css" rel="stylesheet" type="text/css" />
+<link href="{$WEB_ROOT}/assets/pages/css/invoice.min.css" rel="stylesheet" type="text/css" />
 {if $page != "login"}
 <!-- BEGIN THEME LAYOUT STYLES -->
 <link href="{$WEB_ROOT}/assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />

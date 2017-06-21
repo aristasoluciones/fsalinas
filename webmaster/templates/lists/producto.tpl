@@ -7,6 +7,7 @@
             <th>Descripcion </th>
 			<th>A quien va dirigido </th>
 			<th>Ventas </th>
+            <th>Imagen </th>
             <th>Acci&oacute;n </th>
         </tr>
     </thead>
@@ -18,10 +19,9 @@
             <td>{$item.aquien}</td>
 			<td>{$item.ventajas}</td>
             <td>
-            <a href="{$WEB_ROOT}/ajax/show_image.php?id={$item.categoriaId}"  target="_blank" title="Ver Imagen">
-                    Ver imagen
+            <a href="{$WEB_ROOT_IMG}/categorias/{$item.imagen}.{$item.tipo}"  title="Ver imagen" target="_blank">
+                <img src="{$WEB_ROOT_IMG}/categorias/{$item.imagen}.{$item.tipo}" height="50px" width="100px">
                 </a>
-              
              </td>
             <td><div align="center">
                 {if in_array('edit_categoria',$privilegios) or $Usr.role_id eq 1}

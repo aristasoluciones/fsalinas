@@ -19,6 +19,7 @@
 		'perm_accion',
 		'usuario',
 		'cat_electronico',
+		'empresa',
 		'nota',
 		
 		
@@ -31,6 +32,8 @@
 		'producto',
 		'producto_cat',
 		'imagen',
+		'pedido',
+		'detalle-pedido',
 		
 		#documentos
 		'doc_crear',

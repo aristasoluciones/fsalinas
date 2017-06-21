@@ -126,6 +126,12 @@ class Producto extends Main
 		$single = $this->Util()->DB()->GetSingle();		
 		return $single;
 	}
+	 public function getLastIdCat(){
+		$sql = 'SELECT MAX(categoriaId) FROM categoria';
+		$this->Util()->DB()->setQuery($sql);
+		$single = $this->Util()->DB()->GetSingle();		
+		return $single;
+	}
 	//Ontener datos y listados
 	public function Info(){
 		$sql = 'SELECT * FROM categoria WHERE categoriaId = "'.$this->id.'"';
@@ -188,6 +194,7 @@ class Producto extends Main
 				`anchura`,
 				`altura`,
 				`tipo`,
+				`url`,
 				`imagen`
 				)
 				VALUES (
@@ -198,7 +205,8 @@ class Producto extends Main
 				'".$this->anchura."',
 				'".$this->altura."',
 				'".$this->tipo."',
-				'".$this->dataBloob."'
+				'".$this->url."',
+				'".$this->nombre_archivo."'
 				);
 		";
 		$this->Util()->DB()->setQuery($sql);
@@ -342,9 +350,28 @@ class Producto extends Main
 		$this->Util()->DB()->UpdateData();
 	   return true;
 	}//Update
+	public function UpdateDataImage(){		
+		$sql = 'UPDATE 
+				categoria SET 
+				url = "'.$this->url.'",
+				imagen = "'.$this->nombre_archivo.'",			
+				tipo = "'.$this->tipo.'"
+				WHERE categoriaId = "'.$this->id.'"';
+				
+		$this->Util()->DB()->setQuery($sql);
+		$this->Util()->DB()->UpdateData();
+	   return true;
+	}//Update
 
 	public function RollBackData(){		
 		$sql = 'DELETE * FROM productos_categorias where producto_categoria_id = "'.$this->id.'"';
+				
+		$this->Util()->DB()->setQuery($sql);
+		$this->Util()->DB()->DeleteData();
+	   return true;
+	}//Update
+	public function RollBackDataCat(){		
+		$sql = 'DELETE * FROM categoria where categoriaId = "'.$this->id.'"';
 				
 		$this->Util()->DB()->setQuery($sql);
 		$this->Util()->DB()->DeleteData();

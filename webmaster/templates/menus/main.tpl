@@ -20,11 +20,11 @@
        <h3 class="uppercase">Menu de opciones</h3>
     </li>
     {if in_array('configuracion',$privilegios) or $Usr.role_id eq 1} 
-    <li class="nav-item {if $page=='config' || $page=='usuario' || $page=='rol' || $page=='config_role' || $page=='perm_accion'|| $page=='cat_electronico'|| $page=='nota'}active open{/if}">
+    <li class="nav-item {if $page=='config' || $page=='usuario' || $page=='rol' || $page=='config_role' || $page=='perm_accion'|| $page=='cat_electronico'|| $page=='nota' || $page=='empresa'}active open{/if}">
         <a href="javascript:;" class="nav-link nav-toggle">
         <i class="icon-settings"></i> 
         <span class="title">Configuracion </span>
-       {if $page =='rol' ||$page=='config_role'|| $page=='perm_accion'|| $page=='usuario'|| $page=='cat_electronico'|| $page=='nota'}
+       {if $page =='rol' ||$page=='config_role'|| $page=='perm_accion'|| $page=='usuario'|| $page=='cat_electronico'|| $page=='nota' || $page=='empresa'}
 		 <span class="selected"></span>
          <span class="arrow open"></span>
          {else}
@@ -32,6 +32,14 @@
         {/if}
         </a>
         <ul class="sub-menu">
+        	{if in_array('empresa',$privilegios) or $Usr.role_id eq 1} 
+	        	<li class="nav-item {if $page=='empresa'}active open{/if}">
+					<a class="nav-link " href="{$WEB_ROOT}/empresa">
+						<i class="icon-settings"></i>
+						<span class="title">Datos empresa</span>
+					</a>
+				</li>
+			{/if}
         	{if in_array('cat_electronico',$privilegios) or $Usr.role_id eq 1} 
 	        	<li class="nav-item {if $page=='cat_electronico'}active open{/if}">
 					<a class="nav-link " href="{$WEB_ROOT}/cat_electronico">
@@ -136,11 +144,11 @@
 
 	<!-- SECCION PEDIDOS-->
 	{if in_array('pedidos',$privilegios) or $Usr.role_id eq 1} 
-	 <li class="nav-item {if $page =='pedido'}active open{/if}">
+	 <li class="nav-item {if $page =='pedido' || $page =='detalle-pedido'}active open{/if}">
         <a href="javascript:;" class="nav-link nav-toggle">
         <i class="icon-list"></i> 
         <span class="title">Pedidos</span>
-		{if $page=='pedido'}
+		{if $page=='pedido' || $page =='detalle-pedido'}
 		 <span class="selected"></span>
          <span class="arrow open"></span>
         {else}
@@ -149,7 +157,7 @@
         </a>
         <ul class="sub-menu">
        		{if in_array('pedido',$privilegios) or $Usr.role_id eq 1} 
-        	<li class="nav-item {if $page=='pedido'}active open{/if}">
+        	<li class="nav-item {if $page=='pedido' || $page =='detalle-pedido'}active open{/if}">
 				<a class="nav-link " href="{$WEB_ROOT}/pedido">
 					<i class="icon-list"></i>
 					<span class="title">Pedidos</span>

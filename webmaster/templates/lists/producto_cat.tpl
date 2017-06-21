@@ -20,14 +20,15 @@
             <td>{$item.cat_name}</td>
             <td>{$item.descripcion}</td>
             <td>{$item.caracteristica}</td>
-            <td>$ {$item.precioAnterior|number_format:2:".":","}</td>
             <td>$ {$item.precioActual|number_format:2:".":","}</td>
+            <td>$ {$item.precioAnterior|number_format:2:".":","}</td>
             <td>{if $item.promocion eq 'si'}En promocion{else}Sin promocion{/if}</td>
             <td>{$item.status}</td>
             <td>
               <div align="center">
                <a href="{$WEB_ROOT_IMG}/productos_categorias/{$item.nombre_archivo}.{$item.extension}"  title="Ver imagen" target="_blank">
                 <img src="{$WEB_ROOT_IMG}/productos_categorias/{$item.nombre_archivo}.{$item.extension}" height="50px" width="100px">
+                </a>
               </div>
 
             </td>

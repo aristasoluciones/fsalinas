@@ -51,6 +51,9 @@ $imagen = new Imagen;
 include_once(DOC_ROOT.'/classes/cliente.class.php');
 $cliente = new Cliente;
 
+include_once(DOC_ROOT.'/classes/pedido.class.php');
+$pedido = new Pedido;
+
 include_once(DOC_ROOT.'/classes/class.phpmailer.php');
 include_once(DOC_ROOT.'/classes/class.smtp.php');
 include_once(DOC_ROOT.'/classes/sendmail.class.php');
