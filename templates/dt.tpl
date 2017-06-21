@@ -27,7 +27,7 @@
 		<div class="shop-wrap">
       <figure class="shop-item one_half">
 	  <span class="onsale">Oferta!</span>
-         <img src="images/shopimg/cons.jpg" alt="">		 </figure>
+         <img src="{$WEB_ROOT}/images/productos_categorias/{$infoPo.nombre_archivo}.{$infoPo.extension}" alt="">		 </figure>
       <!-- end-product-item-->
 	  <div class="one_half column-last">
 		  <h1>{$infoPo.nombre}</h1>
@@ -36,7 +36,7 @@
 		  <hr class="vertical-space">
 		  <div class="quantity buttons_added">
 		  <input class="minus" type="button" value="-"><input type="text" step="1" min="1" name="quantity" value="1" title="Qty" class="input-text qty text"><input class="plus" type="button" value="+">
-		  <a href="#" class="addtocart">Agregar al Carrito</a>
+		<!-- <a href="#" class="addtocart">Agregar al Carrito</a>-->
 		  </div>
 		  <!--<div class="quantity buttons_added">
 		  <input class="minus" type="button" value="-"></input><input type="text" step="1" min="1" name="quantity" value="1" title="Qty" class="input-text qty text"><input class="plus" type="button" value="+"></input>
@@ -48,7 +48,7 @@
 
       <ul id="myTab" class="nav nav-tabs">
         <li class="active"><a href="#Description" data-toggle="tab">Caracteristicas</a></li>
-        <li><a href="#Reviews" data-toggle="tab">Solicitar Información</a></li>
+        <!--<li><a href="#Reviews" data-toggle="tab">Solicitar Información</a></li>-->
       </ul>
 	  
 	  <div id="myTabContent" class="tab-content">
@@ -84,55 +84,13 @@
 	
     <aside class="four columns offset-by-one sidebar">
       <div class="side-cart">
-	  <h4 class="subtitle"><i class="fa-shopping-cart"></i>Carrito de Compras</h4>
-        <ul class="side-list">
-          <li><button type="button" class="close" data-dismiss="alert">&times;</button>
-		  <a href="#"><img src="images/shopimg/mex-prod03.jpg" alt=""></a>
-		  <h5><a href="#">Nombre del Producto</a></h5>
-		  <p class="price"><span class="amount">$ 58</span></p>
-		  </li>
-          <li><button type="button" class="close" data-dismiss="alert">&times;</button>
-		  <a href="#"><img src="images/shopimg/mex-prod05.jpg" alt=""></a>
-		  <h5><a href="#">Nombre del Producto</a></h5>
-		  <p class="price"><span class="amount">$ 58</span></p>
-		  </li>
-          <li><button type="button" class="close" data-dismiss="alert">&times;</button>
-		  <a href="#"><img src="images/shopimg/mex-prod09.jpg" alt=""></a>
-		  <h5><a href="#">Nombre del Producto</a></h5>
-		  <p class="price"><span class="amount">$ 58</span></p>
-		  </li>
-          <li><button type="button" class="close" data-dismiss="alert">&times;</button>
-		  <a href="#"><img src="images/shopimg/mex-prod07.jpg" alt=""></a>
-		  <h5><a href="#">Nombre del Producto</a></h5>
-		  <p class="price"><span class="amount">$ 58</span></p>
-		  </li>
-        </ul>
-		<!--<p class="total">Subtotal: <strong>$123</strong></p>-->
-		<button class="button small">Ver Carrito</button> 
+
+        {include file="{$DOC_ROOT}/templates/carrito.tpl"}
       </div>
 	  <br class="clear">
       <h4 class="subtitle">Promociones</h4>
       <div class="side-list">
-        <ul>
-          <li>
-		  <a href="#"><img src="images/shopimg/mex-prod03.jpg" alt=""></a>
-		  <h5><a href="#">Limpieza</a></h5>
-		  <p class="price"><span class="amount">$ 58</span></p>
-		  </li>
-          <li>
-		  <a href="#"><img src="images/shopimg/mex-prod05.jpg" alt=""></a>
-		  <h5><a href="#">Otro </a></h5>
-		  <p class="price"><span class="amount">$ 58</span></p>
-		  </li>
-          <li><a href="#"><img src="images/shopimg/mex-prod09.jpg" alt=""></a>
-		  <h5><a href="#">Otro</a></h5>
-		  <p class="price"><span class="amount">$ 58</span></p>
-		  </li>
-          <li><a href="#"><img src="images/shopimg/mex-prod07.jpg" alt=""></a>
-		  <h5><a href="#">Otro</a></h5>
-		  <p class="price"><span class="amount">$ 58</span></p>
-		  </li>
-        </ul>
+
       </div>
       <!-- end-product-list -->
       <br class="clear">

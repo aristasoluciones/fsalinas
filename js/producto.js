@@ -12,10 +12,13 @@ function addCar(Id){
 			console.log(response)
 			var splitResp = response.split("[#]");
 									
-			if(splitResp[0] == "ok")
+			if(splitResp[0] == "ok"){
 				$("#divCar").html(splitResp[1]);
-			else
+			}else if(splitResp[0]=="fail"){
+				alert(splitResp[1]);
+			}else{
 				alert(msgFail);
+			}
 		},
 		error:function(){
 			alert(msgError);
@@ -40,6 +43,34 @@ function deleteCar(Id){
 									
 			if(splitResp[0] == "ok")
 				$("#divCar").html(splitResp[1]);
+			else
+				alert(msgFail);
+		},
+		error:function(){
+			alert(msgError);
+		}
+    });
+	
+	// $("#frmModal").modal("show");
+	
+}//deleteCar
+
+
+
+function buscar(Id){
+	
+	$.ajax({
+	  	type: "POST",
+	  	url: AJAX_PATH,
+	  	// data: "type=buscar&Id="+Id,
+		data: $("#fltProducto").serialize(true)+'&type=buscar',		
+	  	success: function(response) {		
+
+			console.log(response)
+			var splitResp = response.split("[#]");
+									
+			if(splitResp[0] == "ok")
+				$("#divResultado").html(splitResp[1]);
 			else
 				alert(msgFail);
 		},

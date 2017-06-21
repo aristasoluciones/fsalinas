@@ -8,6 +8,8 @@ class Imagen extends Main
 	private $producto_id;
 	private $tipo;
 	private $ruta;
+	private $nombreSlider;
+	private $activo;
 	
 
 	public function setId($value){
@@ -20,9 +22,23 @@ class Imagen extends Main
 			$this->nombre = $value;
 		/*}*/
 	}
+	public function setNombreSlider($value){
+		if($this->Util()->ValidateRequireField($value, 'Nombre')){
+			$this->Util()->ValidateString($value);
+			$this->nombreSlider = $value;
+		}
+	}
+	
+	public function setActivo($value){
+		if($this->Util()->ValidateRequireField($value, 'Activo')){
+			$this->Util()->ValidateString($value);
+			$this->activo = $value;
+		}
+	}
+	
 	public function setDescripcion($value){
 		if($this->Util()->ValidateRequireField($value, 'Descripcion')){
-			$this->Util()->ValidateString($value, 100, 0, '');
+			$this->Util()->ValidateString($value);
 			$this->descripcion = $value;
 		}
 	}	
@@ -195,6 +211,90 @@ class Imagen extends Main
 		return true;
 		
 	}//
+	
+	
+	
+	public function SaveSlider(){
+		
+		
+		if($this->Util()->PrintErrors()){ 
+			return false; 
+		}
+		
+		
+		// echo "<pre>"; print_r($_FILES);
+		// exit;
+		
+		if($this->id){
+			
+			$sql = 'UPDATE 
+				imagen SET 
+				nombre = "'.$this->nombreSlider.'",
+				descripcion = "'.$this->descripcion.'",
+				tipo = "slider",
+				activo = "'.$this->activo.'"
+				WHERE imagenId = "'.$this->id.'"';
+				
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->UpdateData();
+			
+			$aId = $this->id;
+			
+			
+		}else{
+			$sql = 'INSERT INTO imagen (
+					nombre, 
+					descripcion, 
+					tipo, 
+					activo
+				)
+				VALUES(
+					"'.$this->nombreSlider.'",
+					"'.$this->descripcion.'",
+					"slider",
+					"'.$this->activo.'"
+				)';
+								
+			$this->Util()->DB()->setQuery($sql);
+			$aId = $this->Util()->DB()->InsertData();
+		}
+		
+		 
+			
+		$url = DOC_ROOT;
+		foreach($_FILES as $key=>$var)
+		{
+				
+			$aux = explode(".",$var["name"]);
+			$extencion=end($aux);
+			$temporal = $var['tmp_name'];
+			$foto_name="doc_".$aId.".".$extencion;	
+			if(move_uploaded_file($temporal,$url."/images/slider/".$foto_name)){		
+
+				$sql = 'UPDATE 		
+				imagen SET 		
+				ruta = "'.$foto_name.'"			      		
+				WHERE imagenId = '.$aId.'';		
+					
+				$this->Util()->DB()->setQuery($sql);		
+				$this->Util()->DB()->UpdateData();
+
+		   }
+		}
+	   
+		$this->Util()->setError(10129, 'complete', '');
+		$this->Util()->PrintErrors();
+		
+		return true;
+
+	}
+	
+	public function InfoSlider(){
+		$sql = 'SELECT * FROM imagen WHERE imagenId = "'.$this->id.'"';
+		$this->Util()->DB()->setQuery($sql);
+		$info = $this->Util()->DB()->GetRow();		
+		return $info;
+	}
 	
 	
 						

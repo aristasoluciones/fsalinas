@@ -1,29 +1,23 @@
-<form id="frm_2">
-	<table>
-		<tr>
-			<td>Nombre:<input type="text" name="nombreFac" id="nombreFac" value="{$infoVta.nombreFac}"></td>
-			<td>RFC:<input type="text" name="rfcFac" id="rfcFac" value="{$infoVta.nombreFac}"></td>
-			<td>Calle:<input type="text" name="calleFac" id="calleFac" value="{$infoVta.nombreFac}"></td>
-		</tr>
-		<tr>
-			<td>Num Interior:<input type="text" name="numInteriorFac" id="numInteriorFac"  value="{$infoVta.nombreFac}"></td>
-			<td>Num Exterior:<input type="text" name="numExteriorFac" id="numExteriorFac" value="{$infoVta.nombreFac}"></td>
-			<td>Colonia:<input type="text" name="coloniaFac" id="coloniaFac"  value="{$infoVta.nombreFac}"></td>
-		</tr>
-		<tr>
-			<td>Codigo Postal:<input type="text" name="cpFac" id="cpFac" value="{$infoVta.nombreFac}"></td>
-			<td>Colonia:<input type="text" name="coloniaFac" id="coloniaFac" value="{$infoVta.nombreFac}"></td>
-			<td>Estado:<input type="text" name="estadoIdFac" id="estadoIdFac" value="{$infoVta.nombreFac}"></td>
-		</tr>
-		<tr>
-			
-			<td>Delegación o Municipio:<input type="text" name="municipioFac" id="municipioFac" value="{$infoVta.nombreFac}"></td>
-			<td>Telefono:<input type="text" name="telefonoFac" id="telefonoFac" value="{$infoVta.nombreFac}"></td>
-			<td>Correo Electronico:<input type="text" name="correoFac" id="correoFac" value="{$infoVta.nombreFac}"></td>
-		</tr>
-	</table>
+<h3>Instrucciones:</h3>
+
+1. Selecciona el RFC dentro de la lista de rfc´s.<br>
+2. Si eres nuevo usuario selecciona nueva rfc y complementa el formulario.<br>
+3. Presiona Guardar y Continuar.<br>
+<br>
+<br>
+<br>
+<b>Lista de RFC</b>
+<select name="rfcId" id="rfcId" onChange="addRFC()">
+	<option value="">Nuevo RFC</option>
+	{foreach from=$lstRFC item=item key=key}   
+	<option value="{$item.rfcCId}" {if $infoVta.rfcCId eq $item.rfcCId} selected {/if}>{$item.rfc}</option>
+	{/foreach}
 	
-</form>
+</select>
+<div id="divRfc">
+	{include file="{$DOC_ROOT}/templates/lists/rfc.tpl"}
+</div>
+
 <div class="txtErrMsg" style="color:red"></div>
 <div class="loader" ></div>
 <button class="button small" style="background:#622181" onclick="Next(2)">Guardar y Continuar</button>

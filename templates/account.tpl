@@ -15,7 +15,8 @@
 				{include file="{$DOC_ROOT}/templates/menus/main.tpl"}
 <section id="headline">
     <div class="container">
-      <h3>Mi Cuenta</h3>
+
+	   <h3><font color="#622181">Mi Cuenta</font></h3>	
     </div>
 </section>
 
@@ -29,8 +30,8 @@
     <aside class="four columns sidebar leftside">
       <h4 class="subtitle">Menu</h4>
       <div class="listbox1">
-        <ul>
-          <li><a href="#">Información de tu Cuenta </a></li>
+        <ul><!--
+          <li><a href="#">Información de tu Cuenta </a></li>-->
           <li><a href="#">Pedidos</a></li>
         </ul>
       </div>

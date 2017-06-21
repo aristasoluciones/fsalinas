@@ -32,8 +32,11 @@
 		'producto',
 		'producto_cat',
 		'imagen',
+
 		'pedido',
 		'detalle-pedido',
+
+		'imagenes',
 		
 		#documentos
 		'doc_crear',

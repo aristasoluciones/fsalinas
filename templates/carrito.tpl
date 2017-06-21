@@ -4,7 +4,7 @@
 	
 		 {foreach from=$lstCar.carrito item=item key=key}          
 			 <li><button type="button" class="close" data-dismiss="alert" onClick="deleteCar('{$item.key}')">&times;</button>
-			  <a href="#"><img src="{$WEB_ROOT}/images/productos_categorias/{$item.nombre_archivo}{$item.extension}" alt=""></a>
+			  <a href="#"><img src="{$WEB_ROOT}/images/productos_categorias/{$item.nombre_archivo}.{$item.extension}" alt=""></a>
 			  <h5><a href="#">{$item.nombre}</a></h5>
 			  <p class="price"><span class="amount">$ {$item.precioActual}</span></p>
 			  </li>

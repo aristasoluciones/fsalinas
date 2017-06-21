@@ -1,29 +1,23 @@
-<form id="frm_1">
-	<table>
-		<tr>
-			<td>Calle:<input type="text" name="calle" id="calle" value="{$infoVta.calle}"></td>
-			<td>Numero Interior:<input type="text" name="numInterior" id="numInterior" value="{$infoVta.numeroInterior}"></td>
-			<td>Numero Exterior:<input type="text" name="numExterior" id="numExterior" value="{$infoVta.numeroExterior}"></td>
-		</tr>
-		<tr>
-			<td>Entre Calle 1:<input type="text" name="entre1" id="entre1" value="{$infoVta.entreCalle1}"></td>
-			<td>Entre Calle 2:<input type="text" name="entre2" id="entre2" value="{$infoVta.entreCalle2}"></td>
-			<td>Referencias de tu domicilio:<input type="text" name="referencia" id="referencia" value="{$infoVta.referencias}"></td>
-		</tr>
-		<tr>
-			<td>Codigo Postal:<input type="text" name="cp" id="cp" value="{$infoVta.cp}"></td>
-			<td>Colonia:<input type="text" name="colonia" id="colonia" value="{$infoVta.colonia}"></td>
-			<td>Estado:<input type="text" name="estadoId" id="estadoId" value="{$infoVta.estado}"></td>
-		</tr>
-		<tr>
-			
-			<td>Delegación o Municipio:<input type="text" name="municipio" id="municipio" value="{$infoVta.municipio}"></td>
-			<td>Telefono:<input type="text" name="telefono" id="telefono" value="{$infoVta.telefeno}"></td>
-			<td></td>
-		</tr>
-	</table>
+<h3>Instrucciones:</h3>
+
+1. Selecciona la dirección dentro de la lista de direcciones.<br>
+2. Si eres nuevo usuario selecciona nueva sucursal y complementa el formulario.<br>
+3. Presiona Guardar y Continuar.<br>
+<br>
+<br>
+<br>
+<b>Lista de Direcciones</b>
+<select name="direccionId" id="direccionId" onChange="addDireccion()">
+	<option value="">Nueva Direccion</option>
+	{foreach from=$lstDir item=item key=key}   
+	<option value="{$item.direccionCId}" {if $infoVta.direccionCId eq $item.direccionCId} selected {/if} >{$item.calle}</option>
+	{/foreach}
 	
-</form>
+</select>
+<div id="divDirec">
+	{include file="{$DOC_ROOT}/templates/lists/direccion.tpl"}
+</div>
+
 <div class="txtErrMsg" style="color:red"></div>
 <div class="loader" ></div>
 <button class="button small" style="background:#622181" onclick="Next(1)">Guardar y Continuar</button>

@@ -4,5 +4,8 @@
 	$user->AllowAccess();	
 	/* End Session Control */
 
+	$lstCar = $producto->detalleVta();
+	
+	$smarty->assign('lstCar',$lstCar);
 	
 ?>
