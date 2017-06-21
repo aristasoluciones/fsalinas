@@ -9,7 +9,7 @@
 	  <br>
 		<div class="infos_bloc" style="border: 1px solid; border-color:#541C6E">
 		  <a href="{$WEB_ROOT}/producto/q/{$item.categoriaCId}"  class="content" border="0">
-			  <img src="{$WEB_ROOT}/images/menu/{$item.url}" style="width:40%">
+			  <img src="{$item.url}{$item.imagen}.{$item.tipo}" style="width:40%">
 			  <br>
 			  
 			  <div class="overlay_bloc"></div>
