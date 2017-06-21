@@ -11,8 +11,8 @@
 					<h2>Nota del Mes</h2>
        		 	<article class="blog-post clearfix ">
        		 		<figure class="pad-r20">
-       		 			<img src="{$WEB_ROOT}/images/blog/1.jpg" alt="">
-						{$infoNota.rutaImagen}
+       		 			<img src="{$infoNota.rutaImagen}" alt="">
+						
        		 		</figure>
          	 		<div class="one columns alpha">
             			<div class="blog-date-sec">
@@ -35,7 +35,7 @@
 	  <h2>Promociones</h2>
 		{foreach from=$lstPromoinde item=item key=key}  
       	<article class="blog-line clearfix">
-          	<a href="#" class="img-hover"><img src="{$WEB_ROOT}/images/productos_categorias/{$item.nombre_archivo}{$item.extension}" alt=""></a>
+          	<a href="#" class="img-hover"><img src="{$WEB_ROOT}/images/productos_categorias/{$item.nombre_archivo}.{$item.extension}" alt=""></a>
 			<a href="#" style="color:#622181; font-size:22px">{$item.nombre}</a>
 			<br>
             <a href="#">{$item.descripcion}</a>
