@@ -7,9 +7,10 @@
 	$pedido->setId($_GET['id']);
 	$detallespedidos = $pedido->DetallePedido();
 
-	/*echo "<pre>";
-	print_r($pedidos);
-	exit;*/
+	
+	// echo "<pre>";
+	// print_r($detallespedidos);
+	// exit;
 
 	
 	$smarty->assign('detallespedido',$detallespedidos);

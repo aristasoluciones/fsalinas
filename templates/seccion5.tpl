@@ -1,4 +1,4 @@
-<section class="parallax-sec" data-type="background" data-speed="8">
+<section class="parallax-sec" data-type="background" data-speed="8" style="background:#eee url({$WEB_ROOT}/images/ari/{$img3}?{$time}) center bottom fixed; background-repeat:no-repeat;   min-height: 400px;  height: 590px;  margin: 0 auto;  width: 100%;  max-width: 1920px;  position: relative; ">
 <article class="blox dark">
 <div class="container">
 

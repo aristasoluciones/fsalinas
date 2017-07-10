@@ -38,6 +38,7 @@
 				<div class="form-group">
 					<label class="control-label col-md-3"><span class="reqIcon"> * </span>Archivo</label>
 					<div class="col-md-9">
+						<font color="red">Importante: Solo imagenenes de tamaño 1400px x 420px</font>
 						<input type="file" name="img" id="img">
 					</div>	
 				</div>

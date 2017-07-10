@@ -14,6 +14,9 @@ class Producto extends Main
 	private $email;
 	private $telefono;
 	private $razon;
+	private $municipio;
+	
+	
 	
 	
 	public function setEmail($value, $validate = true){	
@@ -440,7 +443,7 @@ class Producto extends Main
 				$this->setReferencias($_POST["referencia"]);
 				$this->setCp($_POST["cp"]);
 				$this->setColonia($_POST["colonia"]);
-				$this->setEstadoId($_POST["estadoId"]);
+				// $this->setEstadoId($_POST["estadoId"]);
 				$this->setMunicipio($_POST["municipio"]);
 				// $this->setTelefono($_POST["telefono"]);
 				
@@ -483,7 +486,7 @@ class Producto extends Main
 						
 					}else{
 						
-						$sql = '
+						 $sql = '
 						UPDATE 
 							direcciones 
 						SET 
@@ -502,6 +505,7 @@ class Producto extends Main
 						$this->Util()->DB()->UpdateData();
 						
 						$Id = $infoDir["direccionId"];
+						$municipioId = $this->municipio;
 					}
 					
 				
@@ -520,6 +524,7 @@ class Producto extends Main
 						montoTotal,
 						clienteId,
 						direccionId,
+						municipioId,
 						facturacionId,
 						paso
 					)
@@ -530,6 +535,7 @@ class Producto extends Main
 						"'.$montoTotal.'",
 						"'.$infoClt["clienteId"].'",
 						"'.$Id.'",
+						"'.$municipioId.'",
 						"0",
 						"2"
 						
@@ -538,14 +544,22 @@ class Producto extends Main
 				$this->Util()->DB()->setQuery($sql);
 				$this->Util()->DB()->InsertData();
 			}else{
+				if($infoDir["direccionId"]==null){
+					$Id = $Id;
+					$municipioId = $municipioId;
+				}else{
+					$Id = $infoDir["direccionId"];
+					$municipioId = $infoDir["municipio"];
+				}
 				
-				$Id = $infoDir["direccionId"];
 				
-				$sql = '
+				
+				 $sql = '
 						UPDATE 
 							ventas 
 						SET 
-								direccionId = "'.$Id.'"		
+								direccionId = "'.$Id.'",	
+								municipioId = "'.$municipioId.'"		
 						WHERE ventaId = "'.$infovta["ventaId"].'"';
 						$this->Util()->DB()->setQuery($sql);
 						$this->Util()->DB()->UpdateData();
@@ -817,6 +831,14 @@ class Producto extends Main
 			$this->Util()->DB()->setQuery($sql);
 		$infoVta = $this->Util()->DB()->GetRow();
 		
+		//asignamos sucursal
+		
+		 $sql = "SELECT * FROM sucursal 
+				WHERE municipioId = '".$infoVta["municipioId"]."'";
+			$this->Util()->DB()->setQuery($sql);
+		$infoSc = $this->Util()->DB()->GetRow();
+		
+		
 	
 		foreach($_SESSION["carrito"] as $key=>$aux){
 			
@@ -861,11 +883,28 @@ class Producto extends Main
 		$data["carrito"] = $carrito;
 		$data["total"] = $total;
 		
+		
+		//asignamos folio
+		
+		$sql = 'SELECT * FROM folios where sucursalId =  '.$infoSc["sucursalid"].' and anio = "'.date("Y").'"';
+		$this->Util()->DB()->setQuery($sql);
+		$infoFoli = $this->Util()->DB()->GetRow();
+		
 		$sql = 'UPDATE ventas SET 
 				estatus = "enviado",
 				subtotal = "'.$total.'",
-				montoTotal = "'.$total.'"
+				folio = "'.$infoFoli["folioSiguiente"].'",
+				montoTotal = "'.$total.'",
+				sucursalId = "'.$infoSc["sucursalid"].'"
 				WHERE clienteId = "'.$infoClt["clienteId"].'" and estatus = "captura"';
+				
+		$this->Util()->DB()->setQuery($sql);
+		$this->Util()->DB()->UpdateData();
+		
+		 $sql = 'UPDATE folios SET 
+				folioActual = "'.($infoFoli["folioActual"]+1).'",
+				folioSiguiente =  "'.($infoFoli["folioSiguiente"]+1).'"
+				WHERE sucursalId = "'.$infoSc["sucursalid"].'" and anio = "'.date("Y").'"';
 				
 		$this->Util()->DB()->setQuery($sql);
 		$this->Util()->DB()->UpdateData();
@@ -917,6 +956,26 @@ class Producto extends Main
 		
 		
 		return $infoVta;
+		
+	}
+	
+	
+	
+	public function enumerateMunicipio(){
+		
+		$ikey = New Ikey;
+		
+		$ikey->setValor($_SESSION['Usr']["usuarioId"]);
+		$ikey->setCampo('clienteId');
+		$usuarioky = $ikey->Descifrar();
+	
+
+		$sql = "SELECT * FROM municipio 
+				WHERE 1  order by nombre asc";
+			$this->Util()->DB()->setQuery($sql);
+		$infoClt = $this->Util()->DB()->GetResult();
+		
+		return $infoClt;
 		
 	}
 	

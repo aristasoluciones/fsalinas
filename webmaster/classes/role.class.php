@@ -4,6 +4,13 @@ class Role extends Main
     protected $permissions;
     private  $name_role;
     private  $id;
+    private  $roleId;
+	
+	
+	 public function setRoleId($value){
+		$this->Util()->ValidateInteger($value);
+		$this->roleId = $value;
+	}
 
     public function setId($value){
 		$this->Util()->ValidateInteger($value);
@@ -91,6 +98,107 @@ class Role extends Main
       }
      return $new_array;
     }
+	
+	public function permisoSegunRol() 
+    {
+
+
+      $sql =  "SELECT PermissionID from rolepermissions where RoleID=".$this->roleId;
+      $this->Util()->DB()->setQuery($sql);
+      $array_perm = $this->Util()->DB()->GetResult(); 
+	  
+	  $newarray =  array();
+      foreach($array_perm as $key =>$value){
+      	  $newarray[] = $value["PermissionID"];
+	  }
+      	return $newarray;
+    
+      
+
+    }
+	
+	public function configurarRoles() 
+    {
+		
+		  $sql =  "SELECT * from permissions where permisoId = 0";
+		  $this->Util()->DB()->setQuery($sql);
+		  $lst = $this->Util()->DB()->GetResult(); 
+		  
+
+		  
+		  $this->setRoleId($this->id);
+		  $lisPermisos = $this->permisoSegunRol();
+		  
+
+		  
+		  foreach($lst as $key=>$aux){
+			  
+			  if(in_array($aux["ID"],$lisPermisos)){
+				  $lst[$key]["check"] =  "si";
+			  }
+			  
+				$sql =  "SELECT * from permissions where permisoId = ".$aux["ID"]."";
+				$this->Util()->DB()->setQuery($sql);
+				$lstSecc = $this->Util()->DB()->GetResult();
+				
+				foreach($lstSecc as $key2=>$aux2){
+					
+					if(in_array($aux2["ID"],$lisPermisos)){
+					  $lstSecc[$key2]["check"] =  "si";
+				    }
+			  
+					
+					$sql2 =  "SELECT * from permissions where permisoId = ".$aux2["ID"]."";
+					$this->Util()->DB()->setQuery($sql2);
+					$lstAccion = $this->Util()->DB()->GetResult();
+					$lstSecc[$key2]["acciones"] = $lstAccion;
+				}
+				
+				$lst[$key]["secciones"] =  $lstSecc;				
+			  
+			  
+		  }
+		  
+		  return $lst;
+	}
+	
+	
+	
+	 public function asignarRoles(){
+						
+		if($this->Util()->PrintErrors()){ 
+			return false; 
+		}
+		
+		$sql = 'DELETE  FROM rolepermissions where RoleID = "'.$this->id.'"';
+			
+
+	
+		$this->Util()->DB()->setQuery($sql);
+		$this->Util()->DB()->DeleteData();
+		
+		foreach($_POST["permisos_assign"] as $key=>$aux){
+			$sql = "
+			INSERT INTO  rolepermissions(
+					RoleID,
+					PermissionID 
+					)
+					VALUES (
+					'".$this->id."',
+					'".$aux."'
+					);
+			";
+			$this->Util()->DB()->setQuery($sql);
+			$this->Util()->DB()->InsertData();
+		}
+		
+			
+		$this->Util()->setError(10129, 'complete', '');
+		$this->Util()->PrintErrors();
+		return true;	
+	}//Save
+	
+
 
 }
 ?>

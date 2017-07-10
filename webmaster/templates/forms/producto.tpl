@@ -56,6 +56,7 @@
 					</div>
 				 </div>
 				  <div class="form-group">
+				  <font color="red">Se recomiendan imagenes de 256 x 256 Píxeles</font>
 				  <label class="control-label col-md-3"><span class="reqIcon">  </span> Imagen de categoria </label>
 					<div class="col-md-9">
 					 {if !$info}

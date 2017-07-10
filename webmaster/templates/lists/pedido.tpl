@@ -3,6 +3,7 @@
 <table class="table table-striped table-bordered table-hover" id="custom_table">
     <thead>
         <tr>
+            <th>Folio</th>
             <th>Nombre cliente</th>
             <th>Fecha </th>
 			<th>Total </th>
@@ -13,6 +14,7 @@
     <tbody>
     	{foreach from=$registros.result item=item key=key}        	
         <tr>
+            <td>{$item.folio}</td>
             <td>{$item.cliente}</td>
             <td>{$item.fecha}</td>
             <td>{$item.total}</td>

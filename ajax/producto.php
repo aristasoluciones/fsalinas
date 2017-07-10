@@ -70,6 +70,7 @@ switch($_POST['type']){
 			// exit;
 		$imagen->setValor($_POST["q"]);
 		$imagen->setNombre($_POST["producto"]);
+		$imagen->setSustancia($_POST["sustancia"]);
 		$imagen->setOrder($_POST["order"]);
 		$InfoCategoria = $imagen->InfoCategoria();
 		$smarty->assign('InfoCategoria',$InfoCategoria);

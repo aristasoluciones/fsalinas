@@ -10,11 +10,22 @@ class Sucursal extends Main
 	private $cordenaday;
 	private $cordenadax;
 	private $horario;
+	private $municipioId;
 
 	public function setId($value){
 		$this->Util()->ValidateInteger($value);
 		$this->id = $value;
 	}
+	
+	
+	public function setMunicipioId($value){
+		if($this->Util()->ValidateRequireField($value, 'Municipio')){
+			$this->Util()->ValidateInteger($value);
+			$this->municipioId = $value;
+		}
+	}
+	
+	
 	public function setNombre($value){
 		if($this->Util()->ValidateRequireField($value, 'Nombre')){
 			$this->Util()->ValidateString($value, 100, 0, '');
@@ -108,7 +119,8 @@ class Sucursal extends Main
 				`coordenadaX`,
 				`coordenadaY`,
 				`horario`,
-				`status`
+				`status`,
+				`municipioId`
 				)
 				VALUES (
 				'".$this->nombre."',
@@ -118,12 +130,35 @@ class Sucursal extends Main
 				'".$this->cordenadax."',
 				'".$this->cordenaday."',
 				'".$this->horario."',
-				'Activo'
+				'Activo',
+				'".$this->municipioId."'
 				);
 		";
 		$this->Util()->DB()->setQuery($sql);
-		$this->Util()->DB()->InsertData();
+		$this->id = $this->Util()->DB()->InsertData();
+		
+		foreach($_FILES as $key=>$var)
+		{
+
+			$aux = explode(".",$_FILES["img"]["name"]);
+			$extencion=end($aux);
+			$temporal = $_FILES["img"]["tmp_name"];
+
+			$url = DOC_ROOT;				
+			$foto_name= $this->id.".".$extencion;
 			
+			if(move_uploaded_file($temporal,$url."/images/sucursales/".$foto_name)){		
+												
+					$sql = 'UPDATE 		
+					sucursal SET 		
+					rutaFoto = "'.$foto_name.'"			      		
+					WHERE sucursalid = '.$this->id.'';		
+						
+				$this->Util()->DB()->setQuery($sql);		
+				$this->Util()->DB()->UpdateData();
+
+			   }
+		}	
 		$this->Util()->setError(10129, 'complete', '');
 		$this->Util()->PrintErrors();
 		return true;	
@@ -141,11 +176,35 @@ class Sucursal extends Main
 				direccion = "'.$this->direccion.'",
 				coordenadaX = "'.$this->cordenadax.'",
 				coordenadaY = "'.$this->cordenaday.'",
-				horario = "'.$this->horario.'"					
+				horario = "'.$this->horario.'",					
+				municipioId = "'.$this->municipioId.'"					
 				WHERE sucursalid = "'.$this->id.'"';
 				
 		$this->Util()->DB()->setQuery($sql);
 		$this->Util()->DB()->UpdateData();
+		
+		foreach($_FILES as $key=>$var)
+		{
+
+			$aux = explode(".",$_FILES["img"]["name"]);
+			$extencion=end($aux);
+			$temporal = $_FILES["img"]["tmp_name"];
+
+			$url = DOC_ROOT;				
+			$foto_name= $this->id.".".$extencion;
+			
+			if(move_uploaded_file($temporal,$url."/images/sucursales/".$foto_name)){		
+												
+					$sql = 'UPDATE 		
+					sucursal SET 		
+					rutaFoto = "'.$foto_name.'"			      		
+					WHERE sucursalid = '.$this->id.'';		
+						
+				$this->Util()->DB()->setQuery($sql);		
+				$this->Util()->DB()->UpdateData();
+
+			   }
+		}	
 			
 		$this->Util()->setError(10130, 'complete', '');
 		$this->Util()->PrintErrors();
@@ -185,6 +244,18 @@ class Sucursal extends Main
 		return true;
 		
 	}//Delete
+	
+	public function enumerateMunicipio(){
+		
+		$sql = 'SELECT * FROM municipio';
+		$this->Util()->DB()->setQuery($sql);
+		$results = $this->Util()->DB()->GetResult();
+		return $results;
+		
+
+		
+	}//Delete
+	
 	
 	
 						

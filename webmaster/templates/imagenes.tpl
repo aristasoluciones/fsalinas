@@ -22,6 +22,11 @@
 		<h1 class="page-title">Imagenes
 			<small></small>
 		</h1>
+
+		<a href="{$WEB_ROOT_P}/index_dev" target="_blank" style="background:#2196F3; color:white; font-size:20px">
+		Vista Previa
+		</a>
+		</button>
 	 <!-- END PAGE TITLE-->
 <!-- END PAGE HEADER-->
 

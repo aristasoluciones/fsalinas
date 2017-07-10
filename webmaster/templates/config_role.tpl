@@ -39,7 +39,7 @@
 			    </div>
 			</div>
 			<div class="portlet-body form">
-			 {include file="{$DOC_ROOT}/templates/lists/{$page}.tpl"}
+			 {include file="{$DOC_ROOT}/templates/lists/{$page}_new.tpl"}
 			</div>
 		</div>
 	  </div>

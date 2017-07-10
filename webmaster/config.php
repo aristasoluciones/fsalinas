@@ -5,6 +5,7 @@ switch($_SERVER['HTTP_HOST'])
 	//Local
 	case 'localhost': 	
 			$webRoot = 'http://'.$_SERVER['HTTP_HOST'].'/fsalinas/webmaster'; 
+			$web_root_p = 'http://'.$_SERVER['HTTP_HOST'].'/fsalinas'; 
 			$docRoot = $_SERVER['DOCUMENT_ROOT'].'/fsalinas/webmaster';
 			$webRootImg = 'http://'.$_SERVER['HTTP_HOST'].'/fsalinas/images'; 
 			$docRootImg = $_SERVER['DOCUMENT_ROOT'].'/fsalinas/images';
@@ -12,11 +13,12 @@ switch($_SERVER['HTTP_HOST'])
 			$sqlUser = 'root'; 
 			$sqlPw = ''; 
 			$sqlHost = 'localhost'; 
-			$sqlDb = 'fsalinas';
+			$sqlDb = 'farmacia_fsalinas';
 		break;
 	//Produccion
 	default:	
 			$webRoot = 'http://'.$_SERVER['HTTP_HOST'].'/webmaster'; 
+			$web_root_p = 'http://'.$_SERVER['HTTP_HOST'].''; 
 			$docRoot = $_SERVER['DOCUMENT_ROOT'].'/webmaster';
 			$webRootImg = 'http://'.$_SERVER['HTTP_HOST'].'/images';  
 			$docRootImg = $_SERVER['DOCUMENT_ROOT'].'/images';
@@ -37,6 +39,7 @@ define('DOC_ROOT_IMG', $docRootImg);
 define('DOC_ROOT_IMG1', $docRootImg1);
 define('WEB_ROOT_IMG', $webRootImg);
 define('WEB_ROOT', $webRoot);
+define('WEB_ROOT_P', $web_root_p);
 
 /** BASE DE DATOS **/
 

@@ -1,4 +1,4 @@
-<section class="parallax-sec parallax-sec2" data-type="background" data-speed="8" style="background: url({$WEB_ROOT}/images/c1.jpg) no-repeat center center;">
+<section class="parallax-sec parallax-sec2" data-type="background" data-speed="8" style="background: url({$WEB_ROOT}/images/ari/{$img2}?{$time}) no-repeat center center;">
     <article class="blox" >
 	<div class="container" >
 

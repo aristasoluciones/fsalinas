@@ -45,5 +45,5 @@
 <!-- {if $page=="login"}
 <script src="{$WEB_ROOT}/assets/pages/scripts/login.min.js" type="text/javascript"></script>   
 {/if} -->
-<script src="{$WEB_ROOT}/js/{$page}.js" type="text/javascript"></script>
+<script src="{$WEB_ROOT}/js/{$page}.js?{$time}" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->

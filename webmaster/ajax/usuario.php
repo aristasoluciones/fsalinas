@@ -15,6 +15,8 @@
 	
 		case 'add':	
 		        $reg_roles =  $objRole->getListRoles();
+		        $lsts =  $sucursal->EnumerateAll();
+		        $smarty->assign('lsts',$lsts);			
 		        $smarty->assign('registros_roles',$reg_roles);			
 				echo 'ok[#]';
 				$smarty->display(DOC_ROOT.'/templates/boxes/'.$page.'.tpl');											
@@ -24,6 +26,8 @@
 				
 				$usuario->setId($_POST['id']);
 				$info = $usuario->Info();
+				 $lsts =  $sucursal->EnumerateAll();
+		        $smarty->assign('lsts',$lsts);		
 			    $reg_roles =  $objRole->getListRoles();
 		        $smarty->assign('registros_roles',$reg_roles);				
 				echo 'ok[#]';				
@@ -44,7 +48,7 @@
 				$usuario->setTelefono($_POST['telefono']);
 				$usuario->setEmail($_POST['email'],true);
 				$usuario->setUsuario($_POST['usuario']);
-				$usuario->setPasswd($_POST['passwd']);
+				$usuario->setPasswd($_POST['passwd'],"si");
 				$usuario->setTipo($_POST['tipo']);
 				$usuario->setActivo($activo);
 				$usuario->setApaterno($_POST['apaterno']);
@@ -55,6 +59,7 @@
 				$usuario->setCiudad($_POST['ciudad']);
 				$usuario->setEstado($_POST['estado']);
 				$usuario->setPais($_POST['pais']);
+				$usuario->setSucursalId($_POST['sucursalId']);
 
 				$success = $usuario->Save();
 				if($success){
@@ -83,7 +88,7 @@
 				$usuario->setTelefono($_POST['telefono']);
 				$usuario->setEmail($_POST['email'],true);
 				$usuario->setUsuario($_POST['usuario']);
-				$usuario->setPasswd($_POST['passwd']);
+				$usuario->setPasswd($_POST['passwd'],"no");
 				$usuario->setTipo($_POST['tipo']);
 				$usuario->setActivo($activo);
 				$usuario->setApaterno($_POST['apaterno']);
@@ -94,9 +99,9 @@
 				$usuario->setCiudad($_POST['ciudad']);
 				$usuario->setEstado($_POST['estado']);
 				$usuario->setPais($_POST['pais']);
-
+				$usuario->setSucursalId($_POST['sucursalId']);
 				$success = $usuario->Update();
-				if($success>0){
+				if($success){
 		        if($_POST["rol_actual"]!=$_POST["tipo"]){
 		        	
 					//$id_role_actual = $rbac->Roles->returnId($_POST["rol_actual"]);

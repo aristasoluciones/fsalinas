@@ -12,12 +12,19 @@
 	$lstRFC = $producto->misRFC();
 	
 	$lstCar = $producto->detalleCarrito();
+	
+	$lstM = $producto->enumerateMunicipio();
+	foreach($lstM  as $key=>$aux){
+		
+		$lstM[$key]["nombre"] = utf8_encode($aux["nombre"]);
+	}
 
 	
 	
-	// echo "<pre>"; print_r($lstRFC );
+	// echo "<pre>"; print_r($lstM );
 	// exit;
 
+	$smarty->assign('lstM',$lstM);
 	$smarty->assign('lstRFC',$lstRFC);
 	$smarty->assign('lstDir',$lstDir);
 	$smarty->assign('infoVta',$infoVta);

@@ -20,6 +20,7 @@ class Producto extends Main
 	private $altura;
 	private $tipo;
 	private $dataBloob;
+	private $sustancia;
 
 	
 
@@ -31,6 +32,15 @@ class Producto extends Main
 		$this->Util()->ValidateInteger($value);
 		$this->pcat_id = $value;
 	}
+	
+	
+	public function setSustancia($value){
+		if($this->Util()->ValidateRequireField($value, 'Sustancia Activa')){
+			$this->Util()->ValidateString($value, 100000, 0, '');
+			$this->sustancia = $value;
+		}
+	}
+	
 	public function setNombre($value){
 		if($this->Util()->ValidateRequireField($value, 'Nombre')){
 			$this->Util()->ValidateString($value, 100, 0, '');
@@ -265,7 +275,7 @@ class Producto extends Main
 		if($this->Util()->PrintErrors()){ 
 			return false; 
 		}
-		$sql = "
+		 $sql = "
 		INSERT INTO  productos_categorias (
 				`nombre`, 
 				`descripcion`,
@@ -277,6 +287,7 @@ class Producto extends Main
 				`status`,
 				`promocion`,
 				`precioAnterior`,
+				`sustancia`,
 				`precioActual`
 				)
 				VALUES (
@@ -289,8 +300,9 @@ class Producto extends Main
 				'".$this->url."',
 				'Activo',
 				'".$this->promocion."',
-				".$this->panterior.",
-				".$this->pactual."
+				'".$this->panterior."',
+				'".$this->sustancia."',
+				'".$this->pactual."'
 				);
 		";
 		$this->Util()->DB()->setQuery($sql);
@@ -326,6 +338,7 @@ class Producto extends Main
 				promocion = "'.$this->promocion.'",
 				precioAnterior = "'.$this->panterior.'",
 				precioActual = "'.$this->pactual.'",
+				sustancia = "'.$this->sustancia.'",
 				status = "Activo"
 				'.$add.'
 				WHERE producto_categoria_id = "'.$this->pcat_id.'"';

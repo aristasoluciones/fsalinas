@@ -3,11 +3,17 @@
 class Pedido extends Main
 {
 	private $id;
+	private $sucursalId;
 
 
 	public function setId($value){
 		$this->Util()->ValidateInteger($value);
 		$this->id = $value;
+	}
+	
+	public function setSucursalId($value){
+		$this->Util()->ValidateInteger($value);
+		$this->sucursalId = $value;
 	}
 	
 	//Ontener datos y listados
@@ -30,7 +36,7 @@ class Pedido extends Main
 		$result = $this->Util()->DB()->GetResult();
 		
 
-		 $sql2 = 'SELECT CONCAT_WS(" ",b.nombre,b.apaterno,b.amaterno) as cliente, a.fecha as fecha, a.direccionId,a.ventaId as folio,a.estatus FROM ventas a INNER JOIN clientes b ON a.clienteId=b.clienteId  WHERE a.ventaId='.$this->id.' ';
+		 $sql2 = 'SELECT CONCAT_WS(" ",b.nombre,b.apaterno,b.amaterno) as cliente, a.fecha as fecha, a.direccionId,a.folio as folio,a.estatus FROM ventas a INNER JOIN clientes b ON a.clienteId=b.clienteId  WHERE a.ventaId='.$this->id.' ';
 	    $this->Util()->DB()->setQuery($sql2);
 		$row= $this->Util()->DB()->GetRow();
 
@@ -48,7 +54,12 @@ class Pedido extends Main
 	}
 	public function Enumerate(){
 		
-		$sql = 'SELECT COUNT(*)	FROM ventas a INNER JOIN clientes b ON a.clienteId=b.clienteId where 1 ';
+		$filtro = "";
+		if($this->sucursalId){
+			$filtro .= " and sucursalId = ".$this->sucursalId."";
+		}
+		
+		$sql = 'SELECT COUNT(*)	FROM ventas a INNER JOIN clientes b ON a.clienteId=b.clienteId where 1 '.$filtro.'';
 		$this->Util()->DB()->setQuery($sql);
 		$total = $this->Util()->DB()->GetSingle();
 		
@@ -59,7 +70,7 @@ class Pedido extends Main
 				a.*,
 				CONCAT_WS(" ",b.nombre,b.apaterno,b.amaterno) AS cliente
 				FROM  
-				ventas a INNER JOIN clientes b ON a.clienteId=b.clienteId where 1
+				ventas a INNER JOIN clientes b ON a.clienteId=b.clienteId where 1 '.$filtro.'
 				ORDER BY a.fecha DESC
 				'.$sqlLim;
 			

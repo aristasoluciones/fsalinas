@@ -218,6 +218,16 @@
                                 </div>  
                             </div>
                         </div>
+						<br>
+						<br>
+						Sucursal:
+						<select name="sucursalId" class="form-control">
+							<option></option>
+							{foreach from=$lsts item=item key=key}
+							   <option value="{$item.sucursalid}" {if $info.sucursalId == $item.sucursalid}selected{/if}>{$item.nombre}</option>
+							{/foreach}  
+                          </select>
+
                         		
 				    </div><!-- END FORM-BODY -->					
                 </form><!-- END FORM-->                  

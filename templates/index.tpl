@@ -101,7 +101,7 @@ content: " ";
 		{include file="{$DOC_ROOT}/templates/menus/main.tpl"}	
 	</div>			
 			{include file="{$DOC_ROOT}/templates/slider.tpl"}
-			<section class="blox dark blackbox promoblox" style="background: url({$WEB_ROOT}/images/1.jpg) no-repeat center center; border-top: 3px solid #622181; border-bottom: 2px solid #622181">
+			<section class="blox dark blackbox promoblox" style="background: url({$WEB_ROOT}/images/ari/{$img1}?{$time}) no-repeat center center; border-top: 3px solid #622181; border-bottom: 2px solid #622181">
 				<!--rgba(98, 33, 129, 0.7); width:100%; height:100%;--->
 				<div class="container" style="background-color: ">
 					<div class="twelve columns"> 

@@ -34,7 +34,10 @@
 	<table>
 		<tr>
 			<td>
-				<font style="font-weight: bold;">Producto:</font><input type="text" name="producto" id="producto">
+				<font style="font-weight: bold;">Nombre del Producto:</font><input type="text" name="producto" id="producto">
+			</td>
+			<td>
+				<font style="font-weight: bold;">Sustancia Activa:</font><input type="text" name="sustancia" id="sustancia">
 			</td>
 			<td>
 

@@ -13,11 +13,20 @@
 		<tr>
 			<td>Codigo Postal:<input type="text" name="cp" id="cp" value="{$infoVta.cp}"></td>
 			<td>Colonia:<input type="text" name="colonia" id="colonia" value="{$infoVta.colonia}"></td>
-			<td>Estado:<input type="text" name="estadoId" id="estadoId" value="{$infoVta.estadoId}"></td>
+			<td>Delegación o Municipio:
+			<select name="municipio" id="municipio">
+				<option></option>
+				{foreach from=$lstM item=item key=key}
+					
+					<option value="{$item.municipioId}" {if $infoVta.municipio eq $item.municipioId} selected {/if}>{$item.nombre}</option>
+				{/foreach}
+			</select>
+			<!--<input type="text" name="municipio" id="municipio" value="{$infoVta.municipio}">
+			--></td>
 		</tr>
 		<tr>
 			
-			<td>Delegación o Municipio:<input type="text" name="municipio" id="municipio" value="{$infoVta.municipio}"></td>
+			<td></td>
 			<td></td>
 			<td></td>
 		</tr>

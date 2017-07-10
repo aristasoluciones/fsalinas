@@ -97,6 +97,33 @@
 					</div>
 							
 				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3"><span class="reqIcon"></span>Municipio</label>
+					<div class="col-md-9">
+						<select name="municipio" id="municipio" class="form-control">
+							<option></option>
+							{foreach from=$lstM item=item key=key}
+								
+								<option value="{$item.municipioId}" {if $info.municipioId eq $item.municipioId} selected {/if}>{$item.nombre}</option>
+							{/foreach}
+						</select>
+					</div>
+							
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3"><span class="reqIcon"></span>Fachada</label>
+					<div class="col-md-9">
+
+							<input type="file" class="form-control input-small" name="img" id="img"  />
+							{if $info.rutaFoto == null}
+							<progress id="progress" value="0"></progress>
+							{else}
+							<progress id="progress" value="100"></progress>
+							{/if}
+							<div id="porcentaje"></div>
+					</div>
+							
+				</div>
 				
            </div>         
              </form>

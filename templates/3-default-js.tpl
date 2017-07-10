@@ -34,5 +34,5 @@ sublayerContainer : 1200
 <script  type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
 <script  type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-smoove/0.2.6/jquery.smoove.min.js"></script>	
 <script src="{$WEB_ROOT}/js/functions.js" type="text/javascript"></script>
-<script src="{$WEB_ROOT}/js/{$page}.js" type="text/javascript"></script>
+<script src="{$WEB_ROOT}/js/{$page}.js??{$time}" type="text/javascript"></script>
 

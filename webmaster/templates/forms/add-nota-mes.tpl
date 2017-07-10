@@ -25,6 +25,7 @@
                  </div>
                  <div class="col-md-6">
                  	 <div class="form-group">
+					 <font color="red">Se recomiendan imagenes de 600 x 300 Píxeles</font>
                  	 	<label class="control-label col-md-3"><span class="reqIcon"> * </span>Archivo adjunto</label>
                         <div class="col-md-9">
 						 	<input type="file" id="doc_file" name="doc_file">

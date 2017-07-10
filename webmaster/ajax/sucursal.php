@@ -16,19 +16,26 @@
 	switch($_POST['type']){
 	
 		case 'add':
-								
+				
+				$lstM = $sucursal->enumerateMunicipio();
+			
 				echo 'ok[#]';	
+				$smarty->assign('lstM',$lstM);				
 				$smarty->assign('titleFrm','Agregar sucursal');				
 				$smarty->display(DOC_ROOT.'/templates/boxes/add_catalogo.tpl');
 																
 			break;
 		
 		case 'edit':
-				
+		
+				$lstM = $sucursal->enumerateMunicipio();
+	
+			
 				$sucursal->setId($_POST['id']);
 				$info = $sucursal->Info();
 				// $info = $util->EncodeRow($info);	
 				echo 'ok[#]';
+				$smarty->assign('lstM',$lstM);
 				$smarty->assign('titleFrm','Editar Sucursal');
 				$smarty->assign('info',$info);				
 				$smarty->display(DOC_ROOT.'/templates/boxes/add_catalogo.tpl');
@@ -49,6 +56,7 @@
 				$sucursal->setCordenadaY($_POST['cordenaday']);
 				$sucursal->setCordenadaX($_POST['cordenadax']);
 				$sucursal->setHorario($_POST['horario']);
+				$sucursal->setMunicipioId($_POST['municipio']);
 				//$sucursal->setClave($_POST['clave_tramite']);
 				$success = $sucursal->Save();
 				
@@ -75,6 +83,7 @@
 				$sucursal->setCordenadaY($_POST['cordenaday']);
 				$sucursal->setCordenadaX($_POST['cordenadax']);
 				$sucursal->setHorario($_POST['horario']);
+				$sucursal->setMunicipioId($_POST['municipio']);
 				$success = $sucursal->Update();
 				if($success){									
 					echo 'ok[#]';									

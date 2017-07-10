@@ -25,6 +25,7 @@
                  </div> -->
                  <div class="col-md-6">
                  	 <div class="form-group">
+					 <font color="red">Se recomiendan archivos en PDF</font>
                  	 	<label class="control-label col-md-3"><span class="reqIcon"> * </span>Archivo en PDF</label>
                         <div class="col-md-9">
 						 	<input type="file" id="doc_file" name="doc_file">

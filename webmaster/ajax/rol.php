@@ -97,26 +97,35 @@ exit;*/
 			break;
 			
 		case 'saveConfig':
-		/*echo "<pre>";
-		print_r($_POST);exit;*/
-               $arrayReq = array();
-                if(!empty($_POST['permisos_assign']))
-                  $arrayReq = $_POST['permisos_assign']; 
-               	
-               	//desasignar los permisos relacionados al rol para agregar los nuevos
-               	//esto limpia los permisos que estan agregados al rol.
-               	$rbac->Roles->unassignPermissions($_POST["role_id"]);
+		
+			$objRole->setId($_POST["role_id"]);
+			if($objRole->asignarRoles()){
+				echo "ok[#]";
+			}else{
+				echo "fail[#]";
+			}
+		
+			/*
+			$arrayReq = array();
+			if(!empty($_POST['permisos_assign']))
+			  $arrayReq = $_POST['permisos_assign']; 
 
-               	foreach($arrayReq as $key=>$value)
-                {
-                  if(!$rbac->assign($_POST["role_id"],$value))
-                  {
-                     echo "fail[#]";  
-                     exit;
-                  }
-                }
-              echo "ok[#]";
-                
+			//desasignar los permisos relacionados al rol para agregar los nuevos
+			//esto limpia los permisos que estan agregados al rol.
+			$rbac->Roles->unassignPermissions($_POST["role_id"]);
+
+			foreach($arrayReq as $key=>$value)
+			{
+			  if(!$rbac->assign($_POST["role_id"],$value))
+			  {
+				 echo "fail[#]";  
+				 exit;
+			  }
+			}
+			echo "ok[#]";
+			*/
+
+			 
 		break;
 
 		case 'delete':

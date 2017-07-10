@@ -89,7 +89,7 @@ class Imagen extends Main
 	
 	
 	public function EnumerateAll(){
-		$sql = 'SELECT * FROM imagen';
+		$sql = 'SELECT * FROM imagen where tipo = "slider"';
 		$this->Util()->DB()->setQuery($sql);
 		$result = $this->Util()->DB()->GetResult();
 		return $result;

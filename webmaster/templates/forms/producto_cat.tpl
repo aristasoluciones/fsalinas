@@ -29,6 +29,12 @@
 							
 				</div>
 				<div class="form-group">
+					<label class="control-label col-md-3"><span class="reqIcon"> * </span>Sustancia Activa</label>
+					<div class="col-md-9">
+							<input type="text" class="form-control" name="sustancia" value="{$info.sustancia}"  />
+					</div>	
+				</div>
+				<div class="form-group">
 				 <label class="control-label col-md-3"><span class="reqIcon"> * </span> Descripcion</label>
 					<div class="col-md-9">
 					 {if !$info}
@@ -82,6 +88,7 @@
 				 <div class="form-group">
 				 <label class="control-label col-md-3"><span class="reqIcon"></span> Imagen del producto </label>
 					<div class="col-md-9">
+					<font color="red">Se recomiendan imagenes de 300 x 300 Píxeles</font>
 					 {if !$info}
 						<input type="file" name="img_pcat" id="img_pcat" class="form-control" />
 					{else}

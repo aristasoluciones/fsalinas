@@ -59,6 +59,8 @@
 																
 		break;
 		case 'save':
+		
+	
 		        $up_image  = false;
                 $prefix_cat = "categoria";
                 $urldestino=DOC_ROOT_IMG."/categorias/";
@@ -261,6 +263,7 @@
 				$producto->setPrecioActual($_POST['pactual']);
 				$producto->setPrecioAnterior($_POST['panterior']);
 				$producto->setPromocion($promocion);
+				$producto->setSustancia($_POST["sustancia"]);
 				/*se comprueba si se subio alguna imagen*/
 				if(is_uploaded_file($_FILES["img_pcat"]["tmp_name"]))
 				{
@@ -334,6 +337,7 @@
 				$producto->setPrecioActual($_POST['pactual']);
 				$producto->setPrecioAnterior($_POST['panterior']);
 				$producto->setPromocion($promocion);
+				$producto->setSustancia($_POST["sustancia"]);
 				//se comprueba si se subio alguna imagen
 				if(is_uploaded_file($_FILES["img_pcat"]["tmp_name"]))
 				{

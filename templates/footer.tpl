@@ -1,4 +1,4 @@
-<footer id="footer" style=" background-image:url({$WEB_ROOT}/images/footer.jpg">
+<footer id="footer" style=" background-image:url({$WEB_ROOT}/images/ari/{$img4}?{$time})">
     <section class="container footer-in">
 	    
       <div class="one-third column">
@@ -11,7 +11,7 @@
       </div>
       <!-- TAG & Partner end -->
 	  <div class="one-third column contact-inf " style="background-color: rgba(255,255,255, 0.5); padding: 55px;">
-        <h5 class="subtitle"><font color="black">Contacto</font></h5>
+        <h2 class="subtitle"><font color="black">Dudas y Sugerencias</font></h2>
      	<span><i class="fa-home"></i><font color="black"> Oficinas Corporativas, Tuxtla Gutiérrez Chiapas, Mexico </font></span>
      	<span><i class="fa-phone"></i></span>
      	<span><i class="fa-envelope-o"></i> <font color="black">@farmaciassalinasg.com.mx</font></span>

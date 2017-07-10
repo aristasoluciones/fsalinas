@@ -22,6 +22,7 @@
    <h2 class="aligncenter">Sucursal {$Infosucursal.nombre}</h2>
 <hr class="vertical-space1">
 
+<img src="{$WEB_ROOT}/webmaster/images/sucursales/{$Infosucursal.rutaFoto}?{$time}">
 
    <h4 class="subtitle"></h4>
    <hr class="vertical-space1">

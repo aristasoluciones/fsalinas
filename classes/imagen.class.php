@@ -23,6 +23,16 @@ class Imagen extends Main
 	private $estado;
 	private $pais;
 	private $valor;
+	private $sustancia;
+	
+	
+	
+	public function setSustancia($value){	
+		// if($this->Util()->ValidateRequireField($value, 'Apellido Materno')){
+			$this->Util()->ValidateString($value);
+			$this->sustancia = $value;
+		// }		
+	}
 	
 	
 	
@@ -204,6 +214,10 @@ class Imagen extends Main
 			
 			if($this->nombre){
 				$filtro .= " and nombre like '%".$this->nombre."%'";
+			}
+			
+			if($this->sustancia){
+				$filtro .= " and sustancia like '%".$this->sustancia."%'";
 			}
 			
 			if($this->order){
@@ -1264,6 +1278,72 @@ class Imagen extends Main
 		
 				
 		return $info;
+		
+	}
+	
+	public function getImages(){
+		
+		 $sql = '
+				SELECT 
+					* 
+				FROM 
+					  imagen
+				WHERE  tipo = "index"';
+				// exit;
+				$this->Util()->DB()->setQuery($sql);
+				$info = $this->Util()->DB()->GetResult();
+				
+		
+				
+		return $info;
+		
+	}
+	
+	
+	
+	public function InfoImg(){
+		
+		 $sql = '
+				SELECT 
+					* 
+				FROM 
+					  imagen
+				WHERE  imagenId = '.$this->id.'';
+				// exit;
+				$this->Util()->DB()->setQuery($sql);
+				$info = $this->Util()->DB()->GetRow();
+				
+		
+				
+		return $info;
+		
+	}
+	
+	public function upFile(){
+	
+	// echo "<pre>"; print_r($_FILES);
+		// exit;
+	
+			$aux = explode(".",$_FILES["img"]["name"]);
+			$extencion=end($aux);
+			$temporal = $_FILES["img"]["tmp_name"];
+	
+			$url = DOC_ROOT;				
+			$foto_name= $this->id.".".$extencion;
+			// echo $url."/images/ari/".$foto_name;
+			if(move_uploaded_file($temporal,$url."/images/ari/".$foto_name)){		
+											
+				$sql = 'UPDATE 		
+				imagen SET 		
+				ruta = "'.$foto_name.'"			      		
+				WHERE imagenId = '.$this->id.'';		
+					
+			$this->Util()->DB()->setQuery($sql);		
+			$this->Util()->DB()->UpdateData();
+
+		   }
+				   
+		return true;
 		
 	}
 						

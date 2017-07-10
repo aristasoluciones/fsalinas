@@ -25,7 +25,16 @@ switch($_POST['type']){
 			$infoVta = $producto->infoVenta();
 			$lstDir = $producto->misDirecciones();
 			$lstRFC = $producto->misRFC();
+			$lstM = $producto->enumerateMunicipio();
+			$lstCar = $producto->detalleCarrito();
 			
+			foreach($lstM  as $key=>$aux){
+				
+				$lstM[$key]["nombre"] = utf8_encode($aux["nombre"]);
+			}
+			
+			$smarty->assign('lstCar',$lstCar);
+			$smarty->assign('lstM',$lstM);
 			$smarty->assign('lstRFC',$lstRFC);
 			$smarty->assign('lstDir',$lstDir);
 			$smarty->assign('infoVta',$infoVta);
@@ -42,12 +51,19 @@ switch($_POST['type']){
 	case "addDireccion":
 		
 		echo "ok[#]";
+		
+		$lstM = $producto->enumerateMunicipio();
+		foreach($lstM  as $key=>$aux){
+			
+			$lstM[$key]["nombre"] = utf8_encode($aux["nombre"]);
+		}
 	
 		$producto->setDireccionId($_POST["direccionId"]);
 		$infoVta = $producto->infoDireccion();
 		
 // echo "<pre>"; print_r($infoVta);
 		// exit;
+		$smarty->assign('lstM',$lstM);
 		$smarty->assign('infoVta',$infoVta);
 		$smarty->display(DOC_ROOT.'/templates/lists/direccion.tpl');
 		

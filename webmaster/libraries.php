@@ -78,6 +78,7 @@ include_once(DOC_ROOT.'/libs/jpgraph/src/jpgraph_bar.php');
 
 $smarty = new Smarty;
 
+$smarty->assign('WEB_ROOT_P',WEB_ROOT_P);
 $smarty->assign('DOC_ROOT',DOC_ROOT);
 $smarty->assign('WEB_ROOT',WEB_ROOT);
 $smarty->assign('WEB_ROOT_IMG',WEB_ROOT_IMG);

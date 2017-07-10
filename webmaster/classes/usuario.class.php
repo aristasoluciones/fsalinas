@@ -22,6 +22,15 @@ class Usuario extends Main
 	private $estado;
 	private $pais;
 	private $rol_actual;
+	private $sucursalId;
+	
+	
+	public function setSucursalId($value){
+		if($this->Util()->ValidateRequireField($value, 'Sucursal')){
+			$this->Util()->ValidateInteger($value);
+			$this->sucursalId = $value;
+		}
+	}
 
 	public function setId($value){
 		$this->Util()->ValidateInteger($value);
@@ -118,11 +127,19 @@ class Usuario extends Main
 		}		
 	}
 	
-	public function setPasswd($value){	
-		if($this->Util()->ValidateRequireField($value, 'Contrase&ntilde;a')){
+	public function setPasswd($value,$vali){
+		
+		if($vali=="si"){
+			if($this->Util()->ValidateRequireField($value, 'Contrase&ntilde;a')){
 			$this->Util()->ValidateString($value, 100, 0, '');
 			$this->passwd = $value;
 		}		
+		}else{
+			$this->Util()->ValidateString($value, 100, 0, '');
+			$this->passwd = $value;
+		}
+			
+		
 	}
 	
 	public function setTipo($value){
@@ -254,7 +271,8 @@ class Usuario extends Main
 			usuario, 
 			passwd, 
 			role_id, 
-			activo
+			activo,
+			sucursalId
 		)
 		VALUES(
 			"'.$this->nombre.'",
@@ -271,7 +289,8 @@ class Usuario extends Main
 			"'.$this->usuario.'",
 			"'.md5($this->passwd).'",
 			'.$this->tipo.',
-			"'.$this->activo.'"
+			"'.$this->activo.'",
+			"'.$this->sucursalId.'"
 		)';
 		// exit;
 		$this->Util()->DB()->setQuery($sql);
@@ -288,7 +307,7 @@ class Usuario extends Main
 	public function Update(){
      /*echo $this->rol_actual;
      exit;*/
-	 $sql = 'SELECT COUNT(*) FROM usuario WHERE usuario = "'.$this->usuario.'" and usuarioId != "'.$this->id.'"';
+	  $sql = 'SELECT COUNT(*) FROM usuario WHERE usuario = "'.$this->usuario.'" and usuarioId != "'.$this->id.'"';
 	$this->Util()->DB()->setQuery($sql);
 	$countUser =  $this->Util()->DB()->GetSingle();		
 
@@ -307,7 +326,9 @@ class Usuario extends Main
 	  return false; 
 	}
 		
-	$sql = 'UPDATE usuario SET 
+		
+	if($this->passwd){
+		 $sql = 'UPDATE usuario SET 
 				apaterno = "'.($this->apaterno).'",
 				amaterno = "'.($this->amaterno).'",
 				calle = "'.($this->calle).'",
@@ -322,15 +343,38 @@ class Usuario extends Main
 				usuario = "'.($this->usuario).'",
 				passwd = "'.md5($this->passwd).'", 
 				role_id= '.$this->tipo.', 
-				activo = "'.$this->activo.'"
+				activo = "'.$this->activo.'",
+				sucursalId = "'.$this->sucursalId.'"
+				
 				WHERE usuarioId = "'.$this->id.'"';
+	}else{
+		 $sql = 'UPDATE usuario SET 
+				apaterno = "'.($this->apaterno).'",
+				amaterno = "'.($this->amaterno).'",
+				calle = "'.($this->calle).'",
+				noExterior = "'.($this->noexterior).'",
+				colonia = "'.($this->colonia).'",
+				ciudad = "'.($this->ciudad).'",
+				estado = "'.($this->estado).'",
+				pais = "'.($this->pais).'",
+				nombre = "'.($this->nombre).'", 
+				telefono = "'.$this->telefono.'",
+				email = "'.($this->email).'", 
+				usuario = "'.($this->usuario).'",
+				role_id= '.$this->tipo.', 
+				activo = "'.$this->activo.'",
+				sucursalId = "'.$this->sucursalId.'"
+				
+				WHERE usuarioId = "'.$this->id.'"';
+	}	
+	
 		$this->Util()->DB()->setQuery($sql);
 		$id_update = $this->Util()->DB()->UpdateData();
 
 		$this->Util()->setError(10113, 'error', '');
 		$this->Util()->PrintErrors();
 		
-		return $id_update;
+		return true;
 		
 	}//Update
 	

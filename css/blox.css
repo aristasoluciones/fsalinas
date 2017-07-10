@@ -56,7 +56,7 @@
 	.blox.section-bg6 { background:#384852 url(../images/pages-tpbg1.jpg) no-repeat center; height:260px; border-bottom:4px solid #e8e8e8;  }
 	.blox.dark .mex-title { border-bottom: 4px solid rgba(255, 255, 255, 0.27);} 
 	
-	.parallax-sec, .parallax-sec2, .parallax-sec3 { background:#eee url(../images/section-bg-prlx1.jpg) center bottom fixed; background-repeat:no-repeat;   min-height: 400px;  height: 590px;  margin: 0 auto;  width: 100%;  max-width: 1920px;  position: relative; }
+	.parallax-sec, .parallax-sec2, .parallax-sec3 { }
 	.parallax-sec2 { background:#eee url(../images/oferta.jpg) no-repeat  center bottom fixed;}
 	.parallax-sec3 { background:#eee url(../images/mision.jpg?ss) no-repeat  center bottom fixed;}
 	.parallax-sec4 { background:#eee url(../images/vision.jpg) no-repeat  center bottom fixed;}

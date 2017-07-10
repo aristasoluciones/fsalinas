@@ -27,6 +27,7 @@
 		'login-customer',
 		'car',
 		'checkout',
+		'index_dev',
 		'account',
 	
 
@@ -49,7 +50,8 @@
 	
 	$smarty->assign('page', $page);
 	$smarty->assign('section', $section);
-		
+	$smarty->assign('time', time());
+	
 	$pageTpl = ($section == '') ? $page : $page.'_'.$section;
 	
 	$smarty->assign('pageTpl', $pageTpl);

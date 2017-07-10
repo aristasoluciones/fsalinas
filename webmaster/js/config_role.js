@@ -11,6 +11,8 @@ function SaveConfig(){
 			//$("#txtErrMsg").hide(0);
 		},
 	  	success: function(response) {
+			
+			console.log(response)
 	  		var splitResp = response.split("[#]");
 			$("#loader").html("");
 			
@@ -58,4 +60,7 @@ function LoadPage(p){
 	
 }//LoadPage
 
-
+function verNivel(id){
+	// alert(id)
+	$("#td_"+id).toggle()
+}
