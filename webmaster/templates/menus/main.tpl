@@ -98,7 +98,7 @@
 				</a>
 			</li>
 			{/if}
-			{if in_array('10',$privilegios) or $typeUser==1} 
+			{if in_array('14',$privilegios) or $typeUser==1} 
 			<li class="nav-item {if $page=='imagenes'}active open{/if}">
 				<a class="nav-link " href="{$WEB_ROOT}/imagenes">
 					<i class="icon-briefcase"></i>
@@ -106,7 +106,7 @@
 				</a>
 			</li>
 			{/if}
-			{if in_array('11',$privilegios) or $Usr.role_id eq 1} 
+			{if in_array('10',$privilegios) or $Usr.role_id eq 1} 
 	        	<li class="nav-item {if $page=='nota'}active open{/if}">
 					<a class="nav-link " href="{$WEB_ROOT}/nota">
 						<i class="icon-settings"></i>
@@ -114,7 +114,7 @@
 					</a>
 				</li>
 			{/if}
-           {if in_array('12',$privilegios) or $Usr.role_id eq 1} 
+           {if in_array('11',$privilegios) or $Usr.role_id eq 1} 
 			<li class="nav-item {if $page=='producto' || $page=='producto_cat'}active open{/if}">
 				<a class="nav-link " href="{$WEB_ROOT}/producto">
 					<i class="icon-briefcase"></i>
@@ -122,7 +122,7 @@
 				</a>
 			</li>
 			{/if}
-			{if in_array('13',$privilegios) or $Usr.role_id eq 1} 
+			{if in_array('12',$privilegios) or $Usr.role_id eq 1} 
 			<li class="nav-item {if $page=='sucursal'}active open{/if}">
 				<a class="nav-link " href="{$WEB_ROOT}/sucursal">
 					<i class="icon-briefcase"></i>
@@ -169,7 +169,7 @@
         </a>
         <ul class="sub-menu">
 
-       		{if in_array('14',$privilegios) or $Usr.role_id eq 1} 
+       		{if in_array('13',$privilegios) or $Usr.role_id eq 1} 
 
         	<li class="nav-item {if $page=='pedido' || $page =='detalle-pedido'}active open{/if}">
 				<a class="nav-link " href="{$WEB_ROOT}/pedido">
