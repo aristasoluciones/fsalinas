@@ -16,7 +16,7 @@
             <td>{$item.Description}</td>
             <td>{$item.Title}</td>
 			<td><div align="center">
-				<a href="javascript:void(0)" onClick="EditReg({$item.ID})" title="Editar tramite">
+				<a href="javascript:void(0)" onClick="EditReg({$item.ID})" title="Editar permiso">
 					<img src="{$WEB_ROOT}/images/png-icon/big/glyphicons_150_edit.png" border="0">
 				</a>
 				<!-- <a href="javascript:void(0)" onClick="EditReg({$item.requisito_id})" title="Configurar tramite">

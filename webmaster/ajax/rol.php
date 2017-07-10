@@ -66,6 +66,7 @@ exit;*/
 				
 			break;
 		case 'update':
+		        /*echo "<pre"*/
 		        if($util->ValidateRequireField($_POST["descripcion"],"Descripcion"))
 		       	{
 					$util->ValidateString($value, 100, 0, '');
@@ -80,7 +81,7 @@ exit;*/
 				}
 				else
 				{
-                   $perm_id = $rbac->Permissions->add($_POST['nombre'],$_POST['descripcion']);
+                   $perm_id = $rbac->Roles->edit($_POST["id"],$_POST['nombre'],$_POST['descripcion']);
                    if($perm_id){
                    	 $util->setError(10129, 'complete', '');
 		             $util->PrintErrors();

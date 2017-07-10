@@ -6,7 +6,7 @@
 </div>
 <div class="portlet-body form">
 	<form  enctype="multipart/form-data" id="frmImg" action="#" method="post" class="form-horizontal form-bordered form-label-stripped">
-	 	{if $info}
+	 	{if $infox}
 		<input type="hidden" name="type" value="update" />
 		<input type="hidden" name="id" value="{$info.imagenId}" />
 		{else} 

@@ -23,7 +23,6 @@ class Config extends Main
 	}
 	public function setDescripcion($value){
 		if($this->Util()->ValidateRequireField($value, 'Descripcion')){
-			$this->Util()->ValidateString($value, 100, 0, '');
 			$this->descripcion = $value;
 		}
 	}
@@ -205,7 +204,7 @@ class Config extends Main
 				 
 		$sql = 'SELECT 
 				*
-				FROM permissions where ID >1
+				FROM permissions
 				ORDER BY Description DESC
 				';
 		$this->Util()->DB()->setQuery($sql);

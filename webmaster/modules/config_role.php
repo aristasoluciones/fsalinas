@@ -24,8 +24,16 @@
     $objRole->setId($rol_id);
 	$permisos = $objRole->configurarRoles();
 
+// <<<<<<< HEAD
 	// echo "<pre>"; print_r($permisos);
 	// exit;
+// =======
+	$permisos = $config->getListPermisos();
+	$role_permisos =  $objRole->getPermisosRoles($permisos,$rol_id);
+	 /*echo "<pre>";
+	 print_r($permisos);
+	 exit;*/
+// >>>>>>> 41b3377b2abacf443d37a4f6023cc9e6602da193
 	$smarty->assign('row',$row_rol);
 	$smarty->assign('listReq',$permisos);
 	

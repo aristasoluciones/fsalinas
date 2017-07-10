@@ -67,6 +67,7 @@
         </ul>
 	</li>  
 	{/if}
+
 	{if in_array(2,$privilegios) or $Usr.role_id eq 1} 
     <li class="nav-item {if $page =='imagenes' || $page =='sucursal' ||$page=='producto'||$page=='imagen'||$page=='puesto' ||  $page=='nota' || $page=='producto_cat'|| $page=='cliente' || $page=='cat_electronico'}active open{/if}">
         <a href="javascript:;" class="nav-link nav-toggle">
@@ -153,6 +154,7 @@
 	{/if}
 
 	<!-- SECCION PEDIDOS-->
+
 	{if in_array(3,$privilegios) or $Usr.role_id eq 1} 
 	 <li class="nav-item {if $page =='pedido' || $page =='detalle-pedido'}active open{/if}">
         <a href="javascript:;" class="nav-link nav-toggle">
@@ -166,11 +168,13 @@
 		{/if}
         </a>
         <ul class="sub-menu">
+
        		{if in_array('14',$privilegios) or $Usr.role_id eq 1} 
+
         	<li class="nav-item {if $page=='pedido' || $page =='detalle-pedido'}active open{/if}">
 				<a class="nav-link " href="{$WEB_ROOT}/pedido">
 					<i class="icon-list"></i>
-					<span class="title">Pedidos</span>
+					<span class="title">Lista de pedidos</span>
 				</a>
 			</li>
 			{/if}

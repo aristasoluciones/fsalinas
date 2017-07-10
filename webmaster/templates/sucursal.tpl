@@ -35,9 +35,11 @@
 				 </div>  
 				<div class="actions">
 				    <div class="btn-group btn-group-devided" data-toggle="buttons"> 
+				    {if in_array('add_sucursal',$privilegios) or $typeUser==1}
 					<a href="javascript:;" class="btn btn-circle sbold green" onClick="AddReg()">
 						Agregar <i class="fa fa-plus"></i>
 					</a>
+					{/if}
 					</div>
 					<div class="btn-group" >
 					 <a class="btn red btn-outline btn-circle" href="javascript:;" data-toggle="dropdown">
