@@ -10,7 +10,7 @@ switch($_SERVER['HTTP_HOST'])
 			$sqlUser = 'root'; 
 			$sqlPw = ''; 
 			$sqlHost = 'localhost'; 
-			$sqlDb = 'farmacia_fsalinas';
+			$sqlDb = 'fsalinas';
 		break;
 	
 	//Produccion

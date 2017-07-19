@@ -133,5 +133,71 @@ function LoadPage(p){
     });
 	
 }//LoadPage
+function openImportarCsv(){
+ $.ajax({
+	  	type: "POST",
+	  	url: AJAX_PATH,
+	  	data: "type=openImportarCsv",		
+	  	success: function(response) {	
+		console.log(response)		
+			var splitResp = response.split("[#]");
+									
+			if(splitResp[0] == "ok")
+			{
+				$("#draggable").html(splitResp[1]);
+			}
+			else if(splitResp[0] == "fail")
+			{
+				bootbox.confirm(splitResp[1],function(res){ return;});
+			}
+		},
+		error:function(){
+			alert(msgError);
+		}
+    });
+	
+	$("#draggable").modal("show");
+
+}
+function saveImportarCsv()
+{
+	var ele  =document.getElementById('frmImportarArchivo');
+   var frm = new FormData(ele);
+
+	$.ajax({
+	  	type: "POST",
+	  	url: AJAX_PATH,
+	  	data: frm,
+ processData: false,  // tell jQuery not to process the data
+ contentType: false,
+		beforeSend: function(){			
+			$("#loader").html(LOADER);
+			$("#txtErrMsg").hide(0);
+		},
+	  	success: function(response) {
+			console.log(response)		
+			var splitResp = response.split("[#]");
+
+			$("#loader").html("");
+			
+			if(splitResp[0] == "ok"){
+				$("#draggable").modal("hide");
+				  location.reload();
+				
+			}else if(splitResp[0] == "fail"){
+				console.log(splitResp[0]);
+				$("#txtErrMsg").show();
+				$("#txtErrMsg").html(splitResp[1]);				
+			}else{
+				bootbox.confirm($msgFail,function(res){ return;});
+			}
+			
+		},
+		error:function(){
+			alert(msgError);
+		}
+    });
+
+}
 
 

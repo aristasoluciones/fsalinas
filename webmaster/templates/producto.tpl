@@ -33,6 +33,9 @@
 				<div class="actions">
 				    <div class="btn-group btn-group-devided" data-toggle="buttons"> 
 				    {if in_array('add_producto',$privilegios) or $typeUser==1}
+				    <a href="javascript:;" class="btn btn-circle sbold green"  title="Importar desde archivo CSV" onClick="openImportarCsv()">
+						Importar <i class="fa fa-plus"></i>
+					</a>
 					<a href="javascript:;" class="btn btn-circle sbold green" onClick="AddReg()">
 						Agregar <i class="fa fa-plus"></i>
 					</a>

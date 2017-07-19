@@ -388,6 +388,69 @@
 					$util->ShowErrors();					
 				}
 			break;
+            case 'openImportarCsv':
+                echo 'ok[#]';
+				$smarty->assign('titleFrm','Importar desde csv');		
+				$smarty->display(DOC_ROOT.'/templates/boxes/importar-csv.tpl');
+            break;
+			case 'importar-csv':
+                 /* echo "<pre>";
+                  print_r($_FILES);
+                  exit;*/
+				  switch ($_POST["tipo"]) {
+				  	case 'producto':
+                        if(is_uploaded_file($_FILES["fileCsv"]["tmp_name"]))
+                        {
+                           $ext_array = explode(".",$_FILES["fileCsv"]["name"]);
+                           $ext = end($ext_array);
+                             if (strtolower($ext)!="csv")
+                          	 {
+                          	 	echo "fail[#]";
+                          	 	echo "Extension de archivo no valido";
+                          	 	exit;
+                          	 }
+
+                          $filename = $_FILES["fileCsv"]["tmp_name"];
+                          $fp = fopen($filename,"r");
+
+                          while(($data = fgetcsv($fp,1000,","))!==false)
+                          {
+                          	 
+                             /*echo $data[0]." ".$data[1]." ".$data[2]." ".$data[3]." ".$data[4]." ".$data[5]." ".$data[6]." ".$data[7];
+                             echo "<br />"*/
+                          	 
+                          	 $producto->setId($data[0]);
+                          	 $producto->setNombre($data[1]);
+							 $producto->setDescripcion($data[2]);
+							 $producto->setCaracteristica($data[3]);
+							 $producto->setPrecioActual($data[4]);
+							 $producto->setPrecioAnterior($data[5]);
+							 $producto->setPromocion($data[6]);
+							 $producto->setSustancia($data[7]);
+							 $producto->SavePcat();
+
+                          }
+
+                          fclose($fp); 							
+                        }
+                        else
+                        {
+                        	echo "fail[#]";
+                        	echo "No se ha cargado ningun archivo..";
+                        }
+				  	break;
+                        
+				  	case 'categoria':
+				  		 
+				  		break;
+				  	
+				  	default:
+				  	     echo "fail[#]";
+				  		 echo "Seleccione tipo de importacion";
+				  		break;
+				  }
+
+			break;
 		
 }//switch
 
